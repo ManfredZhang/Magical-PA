@@ -42,7 +42,7 @@ static int cmd_si(char *args) {
 	uint64_t sinum = 1;
 	if (args == NULL)
 	{
-		sinum = 1;
+		cpu_exec(1);
 		return 0;
 	}
 	int sinum_int = atoi(args);
