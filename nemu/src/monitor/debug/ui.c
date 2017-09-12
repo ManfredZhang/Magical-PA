@@ -97,6 +97,13 @@ void ui_mainloop(int is_batch_mode) {
     if (args >= str_end) {
       args = NULL;
     }
+	
+	char *si = "si";
+	if (!strcmp(cmd,si))
+	{
+		int sinum = args - "0";
+		cpu_exec(sinum);
+	}
 
 #ifdef HAS_IOE
     extern void sdl_clear_event_queue(void);
