@@ -41,7 +41,10 @@ static int cmd_help(char *args);
 static int cmd_si(char *args) {
 	uint64_t sinum = 1;
 	if (args == NULL)
+	{
 		sinum = 1;
+		return 0;
+	}
 	int sinum_int = atoi(args);
 	sinum = sinum_int; 
 	cpu_exec(sinum);
