@@ -38,6 +38,13 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args) {
+	int sinum_int = atoi(args);
+	uint64_t sinum = sinum_int; 
+	cpu_exec(sinum);
+	return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -46,6 +53,7 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si", "Step for [N] times", cmd_si },
 
   /* TODO: Add more commands */
 
@@ -97,13 +105,6 @@ void ui_mainloop(int is_batch_mode) {
     if (args >= str_end) {
       args = NULL;
     }
-	
-	char *si = "si";
-	if (!strcmp(cmd,si))
-	{
-		int sinum = args - "0";
-		cpu_exec(sinum);
-	}
 
 #ifdef HAS_IOE
     extern void sdl_clear_event_queue(void);
