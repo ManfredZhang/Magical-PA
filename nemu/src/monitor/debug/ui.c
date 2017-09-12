@@ -51,6 +51,12 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+static int cmd_info(char *args)
+{
+	//找reg.h的返回函数	
+	return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -60,6 +66,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step for [N] times", cmd_si },
+  { "info", "Information for reg/watch", cmd_info },
 
   /* TODO: Add more commands */
 
