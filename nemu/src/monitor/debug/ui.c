@@ -67,6 +67,7 @@ static int cmd_x(char *args)
 	char *xdir = xnum + strlen(xnum) + 1;
 	int xnum_int = atoi(xnum);
 	printf("%d %s\n",xnum_int,xdir);
+	nbdustsnm();
 	return 0;
 }
 
