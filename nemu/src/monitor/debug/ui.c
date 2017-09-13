@@ -56,9 +56,7 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args)
 {
 	if (!strcmp(args,"r"))
-		for (int i = 0; i < 8; i++)
-			printf("%d ",check_reg_index(i));
-	printf("\n");
+		printf("eax:%u ecx:%u edx:%u edx:%u ebx:%u esp:%u ebp:%u esi:%u\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
 	return 0;
 }
 
