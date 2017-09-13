@@ -15,9 +15,5 @@ uint32_t paddr_read(paddr_t, int);
 void vaddr_write(vaddr_t, int, uint32_t);
 void paddr_write(paddr_t, int, uint32_t);
 
-void nbdustsnm()
-{
-	printf("okoko\n");
-}
 
 #endif
