@@ -14,6 +14,7 @@ enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
  * For more details about the register encoding scheme, see i386 manual.
  */
 
+//PA1 union
 typedef struct {
   union {
 	union {

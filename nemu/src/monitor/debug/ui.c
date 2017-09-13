@@ -38,6 +38,7 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+//PA1 si
 static int cmd_si(char *args) {
 	uint64_t sinum = 1;
 	if (args == NULL)
@@ -51,9 +52,12 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+//PA1 info r
 static int cmd_info(char *args)
 {
-	//找reg.h的返回函数	
+	if (!strcmp(args,"r"))
+		for (int i = 0; i < 8; i++)
+			printf(reg_name(i, 4));
 	return 0;
 }
 
