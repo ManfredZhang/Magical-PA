@@ -64,7 +64,7 @@ static int cmd_info(char *args)
 static int cmd_x(char *args)
 {
 	char *xnum = strtok(args, " ");
-	char *xdir = xnum + strlen(xnum) + 1;
+	char *xdir = xnum + strlen(xnum) + 3;
 	int xnum_int = atoi(xnum);
 	uint32_t xdir_u = atoi(xdir);
 	printf("%d %u\n",xnum_int,xdir_u);
