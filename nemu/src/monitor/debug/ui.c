@@ -57,7 +57,7 @@ static int cmd_info(char *args)
 {
 	if (!strcmp(args,"r"))
 		for (int i = 0; i < 8; i++)
-			printf("%s ",reg_name(i, 4));
+			printf("%d ",check_reg_index(i));
 	printf("\n");
 	return 0;
 }
