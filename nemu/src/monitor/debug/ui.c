@@ -60,6 +60,17 @@ static int cmd_info(char *args)
 	return 0;
 }
 
+//PA1 x N EXPR
+static int cmd_x(char *args)
+{
+	char *xnum = strtok(args, " ");
+	char *xdir = xnum + strlen(xnum) + 1;
+	int xnum_int = atoi(xnum);
+	printf("%d %s\n",xnum_int,xdir);
+	return 0;
+}
+
+
 static struct {
   char *name;
   char *description;
@@ -70,6 +81,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step for [N] times", cmd_si },
   { "info", "Information for reg/watch", cmd_info },
+  { "x", "求出表达式 EXPR 的值, 将结果作为起始内存地址, 以十六进制形式输出连续的N个4字节", cmd_x },
 
   /* TODO: Add more commands */
 
