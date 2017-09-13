@@ -56,7 +56,7 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args)
 {
 	if (!strcmp(args,"r"))
-		printf("eax:0x%X ecx:0x%X edx:0x%X edx:0x%X ebx:0x%X esp:0x%X ebp:0x%X esi:0x%X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
+		printf("eax:0x%X  ecx:0x%X  edx:0x%X  edx:0x%X  ebx:0x%X  esp:0x%X  ebp:0x%X  esi:0x%X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
 	return 0;
 }
 
