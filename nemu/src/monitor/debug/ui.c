@@ -68,7 +68,8 @@ static int cmd_x(char *args)
 	int xnum_int = atoi(xnum);
 	uint32_t xdir_u = atoi(xdir);
 	//printf("%d %u\n",xnum_int,xdir_u);
-	printf("%X\n",paddr_read(xdir_u, xnum_int));
+	//printf("0x%X\n",paddr_read(xdir_u, xnum_int));
+	printf("0x%X\n",vaddr_read(xdir_u, xnum_int));
 	return 0;
 }
 
