@@ -61,11 +61,25 @@ static int cmd_info(char *args)
 }
 
 //PA1 x N EXPR
+int XtoD(int he)
+{   
+	int re = 0;   // 保存转换为10进制的结果
+	int k = 16;   // 16进制
+	int n = 1;    // 位权
+	while(he != 0)  
+	{
+		re += (he%10)*n;  // 取出各位位码值，并乘以对应的位权值
+		he /= 10;   // 去掉16进制数的最低位，次低位变为最低位
+		n *= k;     // 位权乘以16
+	}
+	return re; // 输出转换后的结果
+}
 static int cmd_x(char *args)
 {
 	char *xnum = strtok(args, " ");
 	char *xdir = xnum + strlen(xnum) + 3;
 	int xnum_int = atoi(xnum);
+	xnum_int = XtoD(xnum_int);
 	uint32_t xdir_u = atoi(xdir);
 	//printf("%d %u\n",xnum_int,xdir_u);
 	//printf("0x%X\n",paddr_read(xdir_u, xnum_int));
