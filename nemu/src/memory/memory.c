@@ -13,6 +13,9 @@ uint8_t pmem[PMEM_SIZE];
 
 uint32_t paddr_read(paddr_t addr, int len) {
   return pmem_rw(addr, uint32_t) & (~0u >> ((4 - len) << 3));
+//pmem_rw读取了addr地址的一个4字节的uint，与后面部分掩码做与操作
+//掩码的含义：~0u表示全1，<<3表示4-len个字节*8个位
+//e.g. 要保留1位，掩码要右移(4-1)*8位，以保留1*8位
 }
 
 void paddr_write(paddr_t addr, int len, uint32_t data) {
