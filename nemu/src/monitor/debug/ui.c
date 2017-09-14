@@ -79,8 +79,9 @@ static int cmd_x(char *args)
 	char *xnum = strtok(args, " ");
 	char *xdir = xnum + strlen(xnum) + 3;
 	int xnum_int = atoi(xnum);
-	xnum_int = XtoD(xnum_int);
-	uint32_t xdir_u = atoi(xdir);
+
+	int xdir_int = XtoD(atoi(xdir));
+	uint32_t xdir_u = xdir_int;
 	//printf("%d %u\n",xnum_int,xdir_u);
 	//printf("0x%X\n",paddr_read(xdir_u, xnum_int));
 	printf("0x%X\n",vaddr_read(xdir_u, xnum_int));
