@@ -82,9 +82,9 @@ static int cmd_x(char *args)
 
 	int xdir_int = XtoD(atoi(xdir));
 	uint32_t xdir_u = xdir_int;
-	//printf("%d %u\n",xnum_int,xdir_u);
-	//printf("0x%X\n",paddr_read(xdir_u, xnum_int));
 	printf("0x%X\n",vaddr_read(xdir_u, xnum_int));
+	//char* output = (char*)vaddr_read(xdir_u, xnum_int);
+	//printf("%s\n",output);
 	return 0;
 }
 
