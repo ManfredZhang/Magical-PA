@@ -87,7 +87,7 @@ static int cmd_x(char *args)
 		//if (i % 4 == 0)
 		//	printf("0x");
 		printf("%X",vaddr_read(xdir_u+i, 1));
-		if (i % 4 == 1)
+		if (i % 4 == 3)
 			printf("\n");
 	}
 	//printf("0x%X\n",vaddr_read(xdir_u+ xnum_int - , 1));
