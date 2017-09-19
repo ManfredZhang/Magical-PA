@@ -29,16 +29,7 @@ static struct rule {
   {"\\/", '/'}, 
   {"\\(", '('}, 
   {"\\)", ')'}, 
-  {"1", '1'},
-  {"2", '2'},
-  {"3", '3'},
-  {"4", '4'},
-  {"5", '5'},
-  {"6", '6'},
-  {"7", '7'},
-  {"8", '8'},
-  {"9", '9'},
-  {"0", '0'},	 //pa1-2
+  {"\\d+", 'd'},
   {"==", TK_EQ}         // equal
 };
 
@@ -113,38 +104,8 @@ static bool make_token(char *e) {
 			case ')':
 				tokens[token_idx++].type = 16;
 				break;
-			case '1':
-				tokens[token_idx++].type = 1;
-				break;
-			case '2':
-				tokens[token_idx++].type = 2;
-				break;
-			case '3':
-				tokens[token_idx++].type = 3;
-				break;
-			case '4':
-				tokens[token_idx++].type = 4;
-				break;
-			case '5':
-				tokens[token_idx++].type = 5;
-				break;
-			case '6':
-				tokens[token_idx++].type = 6;
-				break;
-			case '7':
-				tokens[token_idx++].type = 7;
-				break;
-			case '8':
-				tokens[token_idx++].type = 8;
-				break;
-			case '9':
-				tokens[token_idx++].type = 9;
-				break;
-			case '0':
-				tokens[token_idx++].type = 0;
-				break;
 			default:
-				tokens[token_idx++].type = 4040404;
+				break;
         }
 
         break;
