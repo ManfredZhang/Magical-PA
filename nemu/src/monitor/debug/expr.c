@@ -12,7 +12,7 @@ enum {
   /* TODO: Add more token types */
 
 };
-
+//定义token的类型和匹配规则
 static struct rule {
   char *regex;
   int token_type;
@@ -45,7 +45,7 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX];
-
+//检查并编译以上定义的正则表达式
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -93,9 +93,58 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+		int token_idx = 0;
         switch (rules[i].token_type) {
-          default: TODO();
+			case '+':
+				tokens[token_idx++].type = 11;
+				break;
+			case '-':
+				tokens[token_idx++].type = 12;
+				break;
+			case '*':
+				tokens[token_idx++].type = 13;
+				break;
+			case '/':
+				tokens[token_idx++].type = 14;
+				break;
+			case '(':
+				tokens[token_idx++].type = 15;
+				break;
+			case ')':
+				tokens[token_idx++].type = 16;
+				break;
+			case '1':
+				tokens[token_idx++].type = 1;
+				break;
+			case '2':
+				tokens[token_idx++].type = 2;
+				break;
+			case '3':
+				tokens[token_idx++].type = 3;
+				break;
+			case '4':
+				tokens[token_idx++].type = 4;
+				break;
+			case '5':
+				tokens[token_idx++].type = 5;
+				break;
+			case '6':
+				tokens[token_idx++].type = 6;
+				break;
+			case '7':
+				tokens[token_idx++].type = 7;
+				break;
+			case '8':
+				tokens[token_idx++].type = 8;
+				break;
+			case '9':
+				tokens[token_idx++].type = 9;
+				break;
+			case '0':
+				tokens[token_idx++].type = 0;
+				break;
+			default:
+				tokens[token_idx++].type = 4040404;
         }
 
         break;
