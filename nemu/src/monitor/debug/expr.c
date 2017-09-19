@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
+  TK_NOTYPE = 256, TK_EQ, LKH, RKH, NUM
 
   /* TODO: Add more token types */
 
@@ -22,14 +22,14 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},    // spaces //指定+前边的内容可以连续重复使用1次及以上(不包括0)
-  {"\\+", '+'},  // plus
-  {"\\-", '-'},  //pa1-2
+  {" +", TK_NOTYPE},    // spaces
+  {"\\+", '+'},
+  {"\\-", '-'},  
   {"\\*", '*'}, 
   {"\\/", '/'}, 
-  {"\\(", '('}, 
-  {"\\)", ')'}, 
-  {"\\d+", 'd'},
+  {"\\(", LKH}, 
+  {"\\)", RKH}, 
+  {"[0-9]{1,32}", NUM},
   {"==", TK_EQ}         // equal
 };
 
@@ -86,27 +86,17 @@ static bool make_token(char *e) {
          */
 		
         switch (rules[i].token_type) {
-			case '+':
-				tokens[nr_token++].type = 1;
-				break;
-			case '-':
-				tokens[nr_token++].type = 2;
-				break;
-			case '*':
-				tokens[nr_token++].type = 3;
-				break;
-			case '/':
-				tokens[nr_token++].type = 4;
-				break;
-			case '(':
-				tokens[nr_token++].type = 5;
-				break;
-			case ')':
-				tokens[nr_token++].type = 6;
-				break;
-			case 'd':
-				tokens[nr_token].type = 0;
-				//tokens[nr_token++].str = &rules[i].regex;
+			case 42:
+			case 43:
+			case 45:
+			case 47:
+			case LKH:
+			case RKH:
+			case NUM:
+				tokens[nr_token].type = rules[i].token_type;
+				for (int j = 0; j < substr_len; j++)
+					tokens[nr_token].str[j] = substr_start[j];	
+				nr_token++;
 				break;
 			default:
 				break;
