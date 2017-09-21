@@ -119,7 +119,10 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("good\n");
+
+  for (int i = 0; i < 5; i++)
+	  printf("%d %s\n", tokens[i].type, tokens[i].str);
+  
 
   /* TODO: Insert codes to evaluate the expression. */
   TODO();
