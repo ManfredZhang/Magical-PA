@@ -101,7 +101,6 @@ static bool make_token(char *e) {
 			default:
 				break;
         }
-
         break;
       }
     }
