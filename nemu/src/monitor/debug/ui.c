@@ -52,7 +52,7 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
-//PA1 info r
+//PA1-1 info r
 static int cmd_info(char *args)
 {
 	if (!strcmp(args,"r"))
@@ -60,7 +60,15 @@ static int cmd_info(char *args)
 	return 0;
 }
 
-//PA1 x N EXPR
+//PA1-2
+static int cmd_p(char *args)
+{
+	bool success = true;
+	printf("%d\n",expr(args,&success));
+	return 0;
+}
+
+//PA1-1 x N EXPR
 int XtoD(int he)
 {   
 	int re = 0;   // 保存转换为10进制的结果
@@ -108,7 +116,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step for [N] times", cmd_si },
   { "info", "Information for reg/watch", cmd_info },
-  { "x", "求出表达式 EXPR 的值, 将结果作为起始内存地址, 以十六进制形式输出连续的N个4字节", cmd_x },
+  { "x", "将expr结果作为起始内存地址, 以十六进制形式输出连续的N个4字节", cmd_x },
+  { "p", "打印表达式expr", cmd_p },
 
   /* TODO: Add more commands */
 
