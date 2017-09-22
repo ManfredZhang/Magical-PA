@@ -211,7 +211,7 @@ uint32_t eval(int p, int q)
 		//printf("breakimp\n");
 		int op_type = tokens[cut].type;
 		printf("fcut = %d\n", cut);
-		assert(0);
+		//assert(0);
 
 		int val1 = eval(p, cut - 1);
 		//printf("val1= %d\n",val1);
