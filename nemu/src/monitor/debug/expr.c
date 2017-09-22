@@ -191,7 +191,7 @@ uint32_t eval(int p, int q)
 
 		printf("domi_op = %d\n", domi_op);
 
-		switch(domi_op)
+		switch(tokens[domi_op].type)
 		{
 			case 43:
 				return val1 + val2;
