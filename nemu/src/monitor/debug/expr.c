@@ -135,6 +135,7 @@ bool check_parentheses(int p, int q)
 	return true;
 }
 
+/*
 int get_dominant_op(int p, int q)
 {
 	int cut = p;
@@ -164,8 +165,8 @@ int get_dominant_op(int p, int q)
 	}
 
 	return cut;
-}
-/*
+}*/
+
 int get_dominant_op(int p, int q)
 {
 	int cut = p;
@@ -195,7 +196,7 @@ int get_dominant_op(int p, int q)
 				cut = i;
 		}
 	return cut;
-}*/
+}
 
 uint32_t eval(int p, int q)
 {
