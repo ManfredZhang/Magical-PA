@@ -189,7 +189,7 @@ uint32_t eval(int p, int q)
 	{
 		int cut = get_dominant_op(p, q);
 		int op_type = tokens[cut].type;
-		//printf("fcut = %d\n", cut);
+		printf("fcut = %d\n", cut);
 
 		int val1 = eval(p, cut - 1);
 		//printf("val1= %d\n",val1);
