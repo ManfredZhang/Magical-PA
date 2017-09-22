@@ -305,9 +305,9 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  //printf("scan:\n");
-  //for (int i = 0; i < 10; i++)
-	//  printf("%d %s\n", tokens[i].type, tokens[i].str);
+  printf("scan:\n");
+  for (int i = 0; i < 10; i++)
+	  printf("%d %s\n", tokens[i].type, tokens[i].str);
 //printf("break1\n");
   for(int i = 0; i < nr_token; i++) 
   {
