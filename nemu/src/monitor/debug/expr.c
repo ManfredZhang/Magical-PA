@@ -187,13 +187,14 @@ uint32_t eval(int p, int q)
 		return eval(p + 1, q - 1);
 	else
 	{
-		int domi_op = get_dominant_op(p, q);
-		int val1 = eval(p, domi_op - 1);
-		int val2 = eval(domi_op + 1, q);
+		int cut = get_dominant_op(p, q);
+		int op_type = tokens[cut].type;
+		int val1 = eval(p, cut - 1);
+		int val2 = eval(cut + 1, q);
 
-		printf("domi_op = %d\n", domi_op);
+		printf(" = %d\n", op_type);
 
-		switch(tokens[domi_op].type)
+		switch(op_type)
 		{
 			case 43:
 				printf("+: %d\n", val1+val2);
