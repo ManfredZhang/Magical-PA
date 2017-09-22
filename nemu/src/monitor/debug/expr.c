@@ -208,7 +208,7 @@ uint32_t eval(int p, int q)
 				printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			default:
-				assert(1);
+				assert(0);
 		}
 	}
 	panic("zmf: Something wrong?");
