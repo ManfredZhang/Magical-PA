@@ -87,13 +87,13 @@ static bool make_token(char *e) {
          */
 		
         switch (rules[i].token_type) {
-			case 42:
-			case 43:
-			case 45:
-			case 47:
-			case LKH:
-			case RKH:
-			case NUM:
+			case 42:	// *
+			case 43:	// +
+			case 45:	// -
+			case 47:	// /
+			case LKH:	// 258
+			case RKH:	// 259
+			case NUM:	// 260
 				tokens[nr_token].type = rules[i].token_type;
 				for (int j = 0; j < substr_len; j++)
 					tokens[nr_token].str[j] = substr_start[j];	
@@ -137,7 +137,34 @@ bool check_parentheses(int p, int q)
 
 int get_dominant_op(int p, int q)
 {
-	return 0;
+	int cut = p;
+
+	//+-优先度最低
+	for (int i = p; i <= q; i++)
+	{
+		if (tokens[i].type == 258)
+		{
+			while (tokens[i].type != 259)
+				i++;
+			i++;	//跳过右括号
+		}
+		if ((tokens[i].type == 43 || tokens[i].type == 45) && (i > cut))
+			cut = i;
+	}
+	//*/优先度高
+	for (int i = p; i <= q; i++)
+	{
+		if (tokens[i].type == 258)
+		{
+			while (tokens[i].type != 259)
+				i++;
+			i++;
+		}
+		if ((tokens[i].type == 42 || tokens[i].type == 47) && (i > cut))
+			cut = i;
+	}
+
+	return cut;
 }
 
 uint32_t eval(int p, int q)
@@ -158,8 +185,23 @@ uint32_t eval(int p, int q)
 		return eval(p + 1, q - 1);
 	else
 	{
-		//int domi_op = get_dominant_op(p, q);
-		//gtd	
+		int domi_op = get_dominant_op(p, q);
+		int val1 = eval(p, domi_op - 1);
+		int val2 = eval(domi_op + 1, q);
+
+		switch(domi_op)
+		{
+			case 43:
+				return val1 + val2;
+			case 45:
+				return val2 - val2;
+			case 42:
+				return val1 * val2;
+			case 47:
+				return val1 / val2;
+			default:
+				assert(0);
+		}
 	}
 	panic("Something wrong?");
 	return 0;
