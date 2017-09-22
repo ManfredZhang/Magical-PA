@@ -148,7 +148,7 @@ int get_dominant_op(int p, int q)
 				i++;
 			i++;	//跳过右括号
 		}
-		if ((tokens[i].type == '+' || tokens[i].type == '-') && (i > cut))
+		if ((tokens[i].type == '+' || tokens[i].type == '-'))
 			cut = i;
 		//printf("+cut: %d\n",cut);
 	}
@@ -161,7 +161,7 @@ int get_dominant_op(int p, int q)
 				i++;
 			i++;
 		}
-		if ((tokens[i].type == '*' || tokens[i].type == '/') && (i > cut))
+		if ((tokens[i].type == '*' || tokens[i].type == '/'))
 			cut = i;
 		//printf("*cut: %d\n",cut);
 	}
@@ -198,16 +198,16 @@ uint32_t eval(int p, int q)
 
 		switch(op_type)
 		{
-			case 43:
+			case '+':
 				printf("+: %d\n", val1+val2);
 				return val1 + val2;
-			case 45:				
+			case '-':				
 				printf("-: %d\n", val1-val2);
 				return val1 - val2;
-			case 42:
+			case '*':
 				printf("*: %d\n", val1*val2);
 				return val1 * val2;
-			case 47:				
+			case '/':				
 				printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			default:
