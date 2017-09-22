@@ -142,26 +142,26 @@ int get_dominant_op(int p, int q)
 	//+-优先度最低
 	for (int i = p; i <= q; i++)
 	{
-		if (tokens[i].type == 258)
+		if (tokens[i].type == '(')
 		{
-			while (tokens[i].type != 259)
+			while (tokens[i].type != ')')
 				i++;
 			i++;	//跳过右括号
 		}
-		if ((tokens[i].type == 43 || tokens[i].type == 45) && (i > cut))
+		if ((tokens[i].type == '+' || tokens[i].type == '-') && (i > cut))
 			cut = i;
 		//printf("+cut: %d\n",cut);
 	}
 	//*/优先度高
 	for (int i = p; i <= q; i++)
 	{
-		if (tokens[i].type == 258)
+		if (tokens[i].type == '(')
 		{
-			while (tokens[i].type != 259)
+			while (tokens[i].type != ')')
 				i++;
 			i++;
 		}
-		if ((tokens[i].type == 42 || tokens[i].type == 47) && (i > cut))
+		if ((tokens[i].type == '*' || tokens[i].type == '/') && (i > cut))
 			cut = i;
 		//printf("*cut: %d\n",cut);
 	}
