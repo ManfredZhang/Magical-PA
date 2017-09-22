@@ -87,10 +87,10 @@ static bool make_token(char *e) {
          */
 		
         switch (rules[i].token_type) {
-			case 42:	// *
-			case 43:	// +
-			case 45:	// -
-			case 47:	// /
+			case '*':	// *
+			case '+':	// +
+			case '-':	// -
+			case '/':	// /
 			case LKH:	// 258
 			case RKH:	// 259
 			case NUM:	// 260
