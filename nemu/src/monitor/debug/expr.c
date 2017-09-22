@@ -150,7 +150,7 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == 43 || tokens[i].type == 45) && (i > cut))
 			cut = i;
-		printf("cut: %d\n",cut);
+		printf("+cut: %d\n",cut);
 	}
 	//*/优先度高
 	for (int i = p; i <= q; i++)
@@ -163,7 +163,7 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == 42 || tokens[i].type == 47) && (i > cut))
 			cut = i;
-		printf("Cut: %d\n",cut);
+		printf("*cut: %d\n",cut);
 	}
 
 	return cut;
@@ -189,7 +189,7 @@ uint32_t eval(int p, int q)
 	{
 		int cut = get_dominant_op(p, q);
 		int op_type = tokens[cut].type;
-		printf("cut = %d", cut);
+		printf("fcut = %d", cut);
 
 		int val1 = eval(p, cut - 1);
 		int val2 = eval(cut + 1, q);
