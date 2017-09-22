@@ -134,7 +134,7 @@ bool check_parentheses(int p, int q)
 		return false;
 	return true;
 }
-
+/*
 int get_dominant_op(int p, int q)
 {
 	int cut = p;
@@ -164,6 +164,29 @@ int get_dominant_op(int p, int q)
 	}
 
 	return cut;
+}*/
+
+int get_dominant_op(int p, int q)
+{
+	int i, pos=p, nper=0;
+
+		for (i=p; i<=q; i++) {
+				if (tokens[i].type=='(') nper++;
+				if (tokens[i].type==')') nper--;
+				if ((tokens[i].type=='+' || tokens[i].type=='-') && (i>pos) && (nper==0)) pos=i;
+										}
+			if (pos==p) for (i=p; i<=q; i++) {
+						if (tokens[i].type=='(') nper++;
+								if (tokens[i].type==')') nper--;
+										if ((tokens[i].type=='*' || tokens[i].type=='/') && (i>pos)&& (nper==0)) pos=i;
+											}
+				if (pos==p) for (i=p; i<=q; i++) {
+							if (tokens[i].type=='(') nper++;
+									if (tokens[i].type==')') nper--;
+											if ((tokens[i].type==TK_EQ) && (i>pos) && (nper==0)) pos=i;
+												}
+					return pos;
+
 }
 
 uint32_t eval(int p, int q)
