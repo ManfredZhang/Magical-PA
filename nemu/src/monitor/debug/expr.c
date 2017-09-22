@@ -192,23 +192,23 @@ uint32_t eval(int p, int q)
 		printf("fcut = %d\n", cut);
 
 		int val1 = eval(p, cut - 1);
-		printf("val1= %d\n",val1);
+		//printf("val1= %d\n",val1);
 		int val2 = eval(cut + 1, q);
-		printf("val2= %d\n",val2);
+		//printf("val2= %d\n",val2);
 
 		switch(op_type)
 		{
 			case 43:
-				printf("+: %d\n", val1+val2);
+				//printf("+: %d\n", val1+val2);
 				return val1 + val2;
 			case 45:				
-				printf("-: %d\n", val1-val2);
+				//printf("-: %d\n", val1-val2);
 				return val2 - val2;
 			case 42:
-				printf("*: %d\n", val1*val2);
+				//printf("*: %d\n", val1*val2);
 				return val1 * val2;
 			case 47:				
-				printf("/: %d\n", val1/val2);
+				//printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			default:
 				assert(0);
