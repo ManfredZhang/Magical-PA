@@ -183,7 +183,7 @@ int get_dominant_op(int p, int q)
 		{
 			if (tokens[i].type=='(') nper++;
 			if (tokens[i].type==')') nper--;
-			if ((tokens[i].type=='*' || tokens[i].type=='/') && (i>cut)&& (nper==0))
+			if ((tokens[i].type=='*' || tokens[i].type=='/') && (nper==0))
 				cut = i;
 		}
 	if (cut == p) 
