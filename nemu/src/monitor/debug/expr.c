@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, LKH, RKH, NUM
+  TK_NOTYPE = 256, TK_EQ, LKH, RKH, NUM, DEREF, NEG
 
   /* TODO: Add more token types */
 
@@ -234,10 +234,20 @@ uint32_t expr(char *e, bool *success) {
   //for (int i = 0; i < 10; i++)
 	//  printf("%d %s\n", tokens[i].type, tokens[i].str);
 
-  return eval(0, nr_token - 1);  
+  for(int i = 0; i < nr_token; i++) 
+  {
+	int adj_type = 0;
+	if (i > 0)
+		adj_type = tokens[i-1].type;
+	else
+		adj_type = tokens[i].type;
+	if (tokens[i].type == '*' && (i == 0 || adj_type =='+' || adj_type  == '-' || adj_type == DEREF || adj_type == '*' || adj_type == '/')) 
+		tokens[i].type = DEREF;
+	if (tokens[i].type == '-' && (i == 0 || adj_type =='+' || adj_type  == '-' || adj_type == NEG || adj_type == '*' || adj_type =='/')) 
+		tokens[i].type = NEG;
+  }
 
-  /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
+  return eval(0, nr_token - 1);  
 
   return 0;
 }
