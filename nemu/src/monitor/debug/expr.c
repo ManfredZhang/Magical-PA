@@ -150,6 +150,7 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == 43 || tokens[i].type == 45) && (i > cut))
 			cut = i;
+		printf("cut: %d\n",cut);
 	}
 	//*/优先度高
 	for (int i = p; i <= q; i++)
@@ -162,6 +163,7 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == 42 || tokens[i].type == 47) && (i > cut))
 			cut = i;
+		printf("Cut: %d\n",cut);
 	}
 
 	return cut;
