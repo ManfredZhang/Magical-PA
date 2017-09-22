@@ -148,7 +148,7 @@ int get_dominant_op(int p, int q)
 				i++;
 			i++;	//跳过右括号
 		}
-		if ((tokens[i].type == '+' || tokens[i].type == '-'))
+		if ((tokens[i].type == '*' || tokens[i].type == '/'))
 			cut = i;
 		//printf("+cut: %d\n",cut);
 	}
@@ -161,7 +161,7 @@ int get_dominant_op(int p, int q)
 				i++;
 			i++;
 		}
-		if ((tokens[i].type == '*' || tokens[i].type == '/'))
+		if ((tokens[i].type == '+' || tokens[i].type == '-'))
 			cut = i;
 		//printf("*cut: %d\n",cut);
 	}
