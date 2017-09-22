@@ -194,16 +194,16 @@ uint32_t eval(int p, int q)
 		switch(tokens[domi_op].type)
 		{
 			case 43:
-				printf("+: %d", val1+val2);
+				printf("+: %d\n", val1+val2);
 				return val1 + val2;
 			case 45:				
-				printf("-: %d", val1-val2);
+				printf("-: %d\n", val1-val2);
 				return val2 - val2;
 			case 42:
-				printf("*: %d", val1*val2);
+				printf("*: %d\n", val1*val2);
 				return val1 * val2;
 			case 47:				
-				printf("/: %d", val1/val2);
+				printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			default:
 				assert(0);
