@@ -247,6 +247,9 @@ uint32_t expr(char *e, bool *success) {
 		tokens[i].type = NEG;
   }
 
+  for (int i = 0; i < 10; i++)
+	  printf("scan: %d %s\n", tokens[i].type, tokens[i].str); 
+
   return eval(0, nr_token - 1);  
 
   return 0;
