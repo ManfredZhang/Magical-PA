@@ -172,7 +172,7 @@ int get_dominant_op(int p, int q)
 uint32_t eval(int p, int q)
 {
 	if (p > q)
-		panic("Bad expression!");
+		panic("zmf: Bad expression!");
 	else if (p == q)
 	{
 		if (tokens[p].type == NUM)
@@ -181,7 +181,7 @@ uint32_t eval(int p, int q)
 			return val;
 		}
 		else
-			panic("Bad expression!");
+			panic("zmf: Bad expression!");
 	}
 	else if (check_parentheses(p, q) == true)
 		return eval(p + 1, q - 1);
@@ -214,7 +214,7 @@ uint32_t eval(int p, int q)
 				assert(0);
 		}
 	}
-	panic("Something wrong?");
+	panic("zmf: Something wrong?");
 	return 0;
 }
 
