@@ -148,7 +148,7 @@ bool check_parentheses(int p, int q)
 	return true;
 }
 
-/*
+/* 这样写怎么错了？
 int get_dominant_op(int p, int q)
 {
 	int cut = p;
@@ -217,11 +217,43 @@ uint32_t eval(int p, int q)
 		panic("zmf: Bad expression!");
 	else if (p == q)
 	{
+		int val = 0;
 		if (tokens[p].type == NUM)
 		{
-			int val = atoi(tokens[p].str);
+			val = atoi(tokens[p].str);
 			return val;
 		}
+		else if (tokens[p].type == HEX)
+		{
+			for(int i = 2; i < strlen(tokens[p].str); ++ i) 
+			{
+				if(tokens[p].str[i] >= '0' && tokens[p].str[i] <= '9')
+					val = val * 16 + tokens[p].str[i] - '0'; 
+				if(tokens[p].str[i] >= 'A' && tokens[p].str[i] <= 'F')
+					val = val * 16 + tokens[p].str[i] - 'A' + 10; 
+				if(tokens[p].str[i] >= 'a' && tokens[p].str[i] <= 'f')
+					val = val * 16 + tokens[p].str[i] - 'a' + 10;
+			}
+			return val;
+		}
+		else if (tokens[p].type == REG)
+		{
+			char *reg = tokens[p].str + 1;
+			if (!strcmp(reg,"eip"))
+				return cpu.eip;
+			else
+			{
+				for (int i = 0; i < 8; i++)
+					if (!strcmp(reg, regsl[i]))
+					{
+						return cpu.gpr[i]._32;
+						if (i == 7)
+							panic("zmf: REG not available!");
+					}
+			}
+
+		}
+
 		else
 			panic("zmf: Bad expression!");
 	}
