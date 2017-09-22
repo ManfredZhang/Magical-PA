@@ -189,6 +189,8 @@ uint32_t eval(int p, int q)
 		int val1 = eval(p, domi_op - 1);
 		int val2 = eval(domi_op + 1, q);
 
+		printf("domi_op = %d\n", domi_op);
+
 		switch(domi_op)
 		{
 			case 43:
