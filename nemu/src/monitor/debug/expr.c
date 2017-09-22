@@ -189,10 +189,10 @@ uint32_t eval(int p, int q)
 	{
 		int cut = get_dominant_op(p, q);
 		int op_type = tokens[cut].type;
+		printf("cut = %d", cut);
+
 		int val1 = eval(p, cut - 1);
 		int val2 = eval(cut + 1, q);
-
-		printf(" = %d\n", op_type);
 
 		switch(op_type)
 		{
