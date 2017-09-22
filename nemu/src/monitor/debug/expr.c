@@ -31,7 +31,7 @@ static struct rule {
   {"\\(", '('}, 
   {"\\)", ')'},
   {"0x[0-9a-fA-F]{1,32}", HEX}, 
-  {"$[a-zA-Z]+", REG},
+  {"\\$[a-zA-Z]+", REG},
   {"[0-9]{1,32}", NUM},
   {"==", TK_EQ},         // equal
   {"!=", TK_NEQ},
