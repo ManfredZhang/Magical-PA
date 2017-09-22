@@ -185,9 +185,9 @@ uint32_t eval(int p, int q)
 	else
 	{
 		int cut = get_dominant_op(p, q);
-		printf("breakimp\n");
+		//printf("breakimp\n");
 		int op_type = tokens[cut].type;
-		//printf("fcut = %d\n", cut);
+		printf("fcut = %d\n", cut);
 
 		int val1 = eval(p, cut - 1);
 		//printf("val1= %d\n",val1);
