@@ -185,6 +185,7 @@ uint32_t eval(int p, int q)
 	else
 	{
 		int cut = get_dominant_op(p, q);
+		printf("breakimp\n");
 		int op_type = tokens[cut].type;
 		//printf("fcut = %d\n", cut);
 
@@ -229,7 +230,7 @@ uint32_t expr(char *e, bool *success) {
   //printf("scan:\n");
   //for (int i = 0; i < 10; i++)
 	//  printf("%d %s\n", tokens[i].type, tokens[i].str);
-printf("break1\n");
+//printf("break1\n");
   for(int i = 0; i < nr_token; i++) 
   {
 	int adj_type = 0;
@@ -242,7 +243,7 @@ printf("break1\n");
 	if (tokens[i].type == '-' && (i == 0 || adj_type =='+' || adj_type  == '-' || adj_type == NEG || adj_type == '*' || adj_type =='/')) 
 		tokens[i].type = NEG;
   }
-printf("break2\n");
+//printf("break2\n");
 
   //for (int i = 0; i < 10; i++)
 	//  printf("scan: %d %s\n", tokens[i].type, tokens[i].str); 
