@@ -189,7 +189,7 @@ uint32_t eval(int p, int q)
 	{
 		int cut = get_dominant_op(p, q);
 		int op_type = tokens[cut].type;
-		printf("fcut = %d\n", cut);
+		//printf("fcut = %d\n", cut);
 
 		int val1 = eval(p, cut - 1);
 		//printf("val1= %d\n",val1);
@@ -247,8 +247,8 @@ uint32_t expr(char *e, bool *success) {
 		tokens[i].type = NEG;
   }
 
-  for (int i = 0; i < 10; i++)
-	  printf("scan: %d %s\n", tokens[i].type, tokens[i].str); 
+  //for (int i = 0; i < 10; i++)
+	//  printf("scan: %d %s\n", tokens[i].type, tokens[i].str); 
 
   return eval(0, nr_token - 1);  
 
