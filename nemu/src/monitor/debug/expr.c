@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, NUM, DEREF, NEG
+  TK_NOTYPE = 256, TK_EQ, NUM, DEREF, NEG, HEX, REG, TK_NEQ, AND, OR, NOT
 
   /* TODO: Add more token types */
 
@@ -29,9 +29,15 @@ static struct rule {
   {"\\*", '*'}, 
   {"\\/", '/'}, 
   {"\\(", '('}, 
-  {"\\)", ')'}, 
+  {"\\)", ')'},
   {"[0-9]{1,32}", NUM},
-  {"==", TK_EQ}         // equal
+  {"0x[0-9a-fA-F]{1,32}", HEX}, 
+  {"$[a-zA-Z]+", REG},
+  {"==", TK_EQ},         // equal
+  {"!=", TK_NEQ},
+  {"&&", AND},
+  {"||", OR},
+  {"!", NOT},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -87,13 +93,20 @@ static bool make_token(char *e) {
          */
 		
         switch (rules[i].token_type) {
-			case '*':	// *
-			case '+':	// +
-			case '-':	// -
-			case '/':	// /
-			case '(':	// 258
-			case ')':	// 259
-			case NUM:	// 260
+			case '*':	
+			case '+':	
+			case '-':	
+			case '/':
+			case '(':	
+			case ')':	
+			case NUM:	
+			case HEX:
+			case REG:
+			case TK_EQ:
+			case TK_NEQ:
+			case AND:
+			case OR:
+			case NOT:
 				tokens[nr_token].type = rules[i].token_type;
 				for (int j = 0; j < substr_len; j++)
 					tokens[nr_token].str[j] = substr_start[j];	
