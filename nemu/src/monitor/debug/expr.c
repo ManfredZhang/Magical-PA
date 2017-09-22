@@ -222,10 +222,11 @@ uint32_t expr(char *e, bool *success) {
 
   for (int i = 0; i < 5; i++)
 	  printf("%d %s\n", tokens[i].type, tokens[i].str);
-  
+
+  return eval(0, nr_token - 1);  
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  //TODO();
 
   return 0;
 }
