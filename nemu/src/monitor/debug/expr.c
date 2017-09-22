@@ -139,7 +139,6 @@ int get_dominant_op(int p, int q)
 {
 	int cut = p;
 
-	//+-优先度最低
 	for (int i = p; i <= q; i++)
 	{
 		if (tokens[i].type == '(')
@@ -150,9 +149,8 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == '*' || tokens[i].type == '/'))
 			cut = i;
-		//printf("+cut: %d\n",cut);
 	}
-	//*/优先度高
+	
 	for (int i = p; i <= q; i++)
 	{
 		if (tokens[i].type == '(')
@@ -163,7 +161,6 @@ int get_dominant_op(int p, int q)
 		}
 		if ((tokens[i].type == '+' || tokens[i].type == '-'))
 			cut = i;
-		//printf("*cut: %d\n",cut);
 	}
 
 	return cut;
@@ -211,7 +208,7 @@ uint32_t eval(int p, int q)
 				printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			default:
-				assert(0);
+				assert(1);
 		}
 	}
 	panic("zmf: Something wrong?");
