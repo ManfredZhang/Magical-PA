@@ -5,6 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ, LKH, RKH, NUM
@@ -113,6 +114,63 @@ static bool make_token(char *e) {
 
   return true;
 }
+
+bool check_parentheses(int p, int q)
+{
+	if (tokens[p].type == 258 && tokens[q].type == 259)
+	{
+		int pair_num = 0;
+		for (int i = p + 1; i < q; i++)
+		{
+			if (tokens[i].type == 258)
+				pair_num++;
+			if (tokens[i].type == 259)
+				pair_num--;
+			if (pair_num < 0)
+				return false;
+		}			
+	}
+	else
+		return false;
+	return true;
+}
+
+int get_dominant_op(int p, int q)
+{
+	return 0;
+}
+
+uint32_t eval(int p, int q)
+{
+	if (p > q)
+		panic("Bad expression!");
+	else if (p == q)
+	{
+		if (tokens[p].type == NUM)
+		{
+			int val = atoi(tokens[p].str);
+			return val;
+		}
+		else
+			panic("Bad expression!");
+	}
+	else if (check_parentheses(p, q) == true)
+		return eval(p + 1, q - 1);
+	else
+	{
+		//int domi_op = get_dominant_op(p, q);
+		//gtd	
+	}
+	panic("Something wrong?");
+	return 0;
+}
+
+
+
+
+
+
+
 
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
