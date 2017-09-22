@@ -170,29 +170,29 @@ int get_dominant_op(int p, int q)
 int get_dominant_op(int p, int q)
 {
 	int cut = p;
-	int nper = 0;
+	int inper = 0;
 
-	for (int i=p; i<=q; i++) 
+	for (int i = p; i <= q; i++) 
 	{
-		if (tokens[i].type=='(') nper++;
-		if (tokens[i].type==')') nper--;
-		if ((tokens[i].type=='+' || tokens[i].type=='-') && (nper==0)) 
+		if (tokens[i].type == '(') inper++;
+		if (tokens[i].type == ')') inper--;
+		if ((tokens[i].type == '+' || tokens[i].type == '-') && (inper == 0)) 
 			cut = i;
 	}
 	if (cut == p) 
-		for (int i=p; i<=q; i++) 
+		for (int i = p; i <= q; i++) 
 		{
-			if (tokens[i].type=='(') nper++;
-			if (tokens[i].type==')') nper--;
-			if ((tokens[i].type=='*' || tokens[i].type=='/') && (nper==0))
+			if (tokens[i].type == '(') inper++;
+			if (tokens[i].type == ')') inper--;
+			if ((tokens[i].type == '*' || tokens[i].type == '/') && (inper == 0))
 				cut = i;
 		}
 	if (cut == p) 
-		for (int i=p; i<=q; i++) 
+		for (int i = p; i <= q; i++) 
 		{
-			if (tokens[i].type=='(') nper++;
-			if (tokens[i].type==')') nper--;
-			if ((tokens[i].type==TK_EQ) && (i>cut) && (nper==0)) 
+			if (tokens[i].type == '(') inper++;
+			if (tokens[i].type == ')') inper--;
+			if ((tokens[i].type == TK_EQ) && (inper == 0)) 
 				cut = i;
 		}
 	return cut;
