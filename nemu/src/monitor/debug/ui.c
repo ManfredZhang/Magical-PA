@@ -100,10 +100,12 @@ static int cmd_x(char *args)
 		bool success = true;
 		uint32_t addr = expr(to_cal, &success);
 		printf("0x%08x: ", addr);
+
+		printf("0x ");
 		for (int i = 0; i < n_byte; i++)
 		{
 			int val = vaddr_read(addr + i, 1);
-			printf("0x%02X ", val);
+			printf("%02X ", val);
 		}
 		printf("\n");
 		return 0;
