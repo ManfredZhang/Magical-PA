@@ -258,11 +258,17 @@ uint32_t eval(int p, int q)
 		int op_type = tokens[cut].type;
 		//printf("fcut = %d\n", cut);
 		//assert(0);
-
-		int val1 = eval(p, cut - 1);
-		//printf("val1= %d\n",val1);
-		int val2 = eval(cut + 1, q);
-		//printf("val2= %d\n",val2);
+		int val1 = 0;
+		int val2 = 0;
+		if (tokens[cut].single == true)
+			val1 = eval(cut + 1, q);
+		else
+		{
+			val1 = eval(p, cut - 1);
+			//printf("val1= %d\n",val1);
+			val2 = eval(cut + 1, q);
+			//printf("val2= %d\n",val2);
+		}
 
 		switch(op_type)
 		{
@@ -280,6 +286,8 @@ uint32_t eval(int p, int q)
 				return val1 / val2;
 			case TK_EQ:	
 				return val1 == val2;
+			case TK_NEQ:
+				return val1 != val2;
 			case NEG:
 				return -val1;
 			case DEREF:
