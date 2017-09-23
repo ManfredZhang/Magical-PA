@@ -99,15 +99,18 @@ static int cmd_x(char *args)
 	{
 		bool success = true;
 		uint32_t addr = expr(to_cal, &success);
-		printf("0x%08x: ", addr);
-
-		printf("0x ");
-		for (int i = 0; i < n_byte*4; i++)
+	
+		for (int j = 0; j < 4; j++)
 		{
-			int val = vaddr_read(addr + i, 1);
-			printf("%02X ", val);
+			printf("0x%08x: ", addr);
+			printf("0x ");
+			for (int i = 0; i < n_byte; i++)
+			{
+				int val = vaddr_read(addr + i, 1);
+				printf("%02X ", val);
+			}
+			printf("\n");
 		}
-		printf("\n");
 		return 0;
 	}
 
