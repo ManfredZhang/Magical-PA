@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <regex.h>
 #include <stdlib.h>
+#include <limits.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ, NUM, DEREF, NEG, HEX, REG, TK_NEQ, AND, OR, NOT
@@ -68,6 +69,8 @@ void init_regex() {
 typedef struct token {
   int type;
   char str[32];
+  int level;
+  bool single;
 } Token;
 
 Token tokens[32];
@@ -112,6 +115,8 @@ static bool make_token(char *e) {
 			case OR:
 			case NOT:
 				tokens[nr_token].type = rules[i].token_type;
+				tokens[nr_token].level = rules[i].level;
+				tokens[nr_token].single = rules[i].single;
 				for (int j = 0; j < substr_len; j++)
 					tokens[nr_token].str[j] = substr_start[j];	
 				nr_token++;
@@ -152,50 +157,33 @@ bool check_parentheses(int p, int q)
 	return true;
 }
 
-/* 这样写怎么错了？
 int get_dominant_op(int p, int q)
 {
-	int cut = p;
-
-	for (int i = p; i <= q; i++)
-	{
-		if (tokens[i].type == '(')
-		{
-			while (tokens[i].type != ')')
-				i++;
-			i++;	//跳过右括号
-		}
-		if ((tokens[i].type == '+' || tokens[i].type == '-'))
-			cut = i;
-	}
-	if (cut == p)
-	for (int i = p; i <= q; i++)
-	{
-		if (tokens[i].type == '(')
-		{
-			while (tokens[i].type != ')')
-				i++;
-			i++;
-		}
-		if ((tokens[i].type == '*' || tokens[i].type == '/'))
-			cut = i;
-	}
-
-	return cut;
-}*/
-
-int get_dominant_op(int p, int q)
-{
-	int cut = p;
 	int inper = 0;
+	int min_prio = 100;
 
 	for (int i = p; i <= q; i++) 
 	{
 		if (tokens[i].type == '(') inper++;
 		if (tokens[i].type == ')') inper--;
-		if ((tokens[i].type == '+' || tokens[i].type == '-') && (inper == 0)) 
-			cut = i;
+		if ((tokens[i].level < min_prio) && (inper == 0)) 
+			min_prio = tokens[i].level;
 	}
+	for (int i = q; i >= p; i--)
+	{
+		if (tokens[i].type == '(') inper++;
+		if (tokens[i].type == ')') inper--;
+		if ((tokens[i].level == min_prio) && (inper == 0))
+		{
+			if (tokens[i].single == true)
+				while (i > p && tokens[i-1].single == true)
+					i--;
+			return i;
+		}
+	}
+	panic("zmf: Can't find dominate op");
+	return 0;
+	/*
 	if (cut == p) 
 		for (int i = p; i <= q; i++) 
 		{
@@ -212,7 +200,7 @@ int get_dominant_op(int p, int q)
 			if ((tokens[i].type == TK_EQ) && (inper == 0)) 
 				cut = i;
 		}
-	return cut;
+	return cut;*/
 }
 
 uint32_t eval(int p, int q)
@@ -268,7 +256,7 @@ uint32_t eval(int p, int q)
 		int cut = get_dominant_op(p, q);
 		//printf("breakimp\n");
 		int op_type = tokens[cut].type;
-		printf("fcut = %d\n", cut);
+		//printf("fcut = %d\n", cut);
 		//assert(0);
 
 		int val1 = eval(p, cut - 1);
@@ -290,6 +278,18 @@ uint32_t eval(int p, int q)
 			case '/':				
 				printf("/: %d\n", val1/val2);
 				return val1 / val2;
+			case TK_EQ:	
+				return val1 == val2;
+			case NEG:
+				return -val1;
+			case DEREF:
+				return vaddr_read(val1, 1);
+			case AND:
+				return val1 && val2;
+			case OR:
+				return val1 || val2;
+			case NOT:
+				return !val1;
 			default:
 				assert(0);
 		}
@@ -316,10 +316,18 @@ uint32_t expr(char *e, bool *success) {
 		adj_type = tokens[i-1].type;
 	else
 		adj_type = tokens[i].type;
-	if (tokens[i].type == '*' && (i == 0 || (adj_type != '(' && adj_type != ')' && adj_type != HEX && adj_type != REG && adj_type != NUM ))) 
+	if (tokens[i].type == '*' && (i == 0 || (adj_type != '(' && adj_type != ')' && adj_type != HEX && adj_type != REG && adj_type != NUM )))
+	{	
 		tokens[i].type = DEREF;
+		tokens[i].level = 90;
+		tokens[i].single = true;
+	}
 	if (tokens[i].type == '-' && (i == 0 || (adj_type != '(' && adj_type != ')' && adj_type != HEX && adj_type != REG && adj_type != NUM ))) 
+	{
 		tokens[i].type = NEG;
+		tokens[i].level = 90;
+		tokens[i].single = true;
+	}
   }
 
   printf("scan:\n");
