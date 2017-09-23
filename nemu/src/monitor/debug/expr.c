@@ -273,16 +273,16 @@ uint32_t eval(int p, int q)
 		switch(op_type)
 		{
 			case '+':
-				printf("+: %d\n", val1+val2);
+				//printf("+: %d\n", val1+val2);
 				return val1 + val2;
 			case '-':				
-				printf("-: %d\n", val1-val2);
+				//printf("-: %d\n", val1-val2);
 				return val1 - val2;
 			case '*':
-				printf("*: %d\n", val1*val2);
+				//printf("*: %d\n", val1*val2);
 				return val1 * val2;
 			case '/':				
-				printf("/: %d\n", val1/val2);
+				//printf("/: %d\n", val1/val2);
 				return val1 / val2;
 			case TK_EQ:	
 				return val1 == val2;
