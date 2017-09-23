@@ -305,9 +305,17 @@ uint32_t eval(int p, int q)
 
 
 uint32_t expr(char *e, bool *success) {
+  for (int i = 0; i < nr_token; i++)
+  {
+	  tokens[i].type = 0;
+	  tokens[i].level = 0;
+	  tokens[i].single = 0;
+	  memset(tokens[i].str, 0, sizeof(tokens[i].str));
+  }
+
   if (!make_token(e)) {
-    *success = false;
-    return 0;
+	  *success = false;
+	  return 0;
   }
   for(int i = 0; i < nr_token; i++) 
   {
