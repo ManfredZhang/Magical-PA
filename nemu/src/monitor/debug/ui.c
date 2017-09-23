@@ -3,6 +3,7 @@
 #include "monitor/watchpoint.h"
 #include "nemu.h"
 
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -88,11 +89,25 @@ static int cmd_x(char *args)
 	//char *xdir = xnum + strlen(xnum) + 3;
 	//int xnum_int = atoi(xnum);
 
-	int n_byte = 0;
-	int to_cal = 0;
-	sscanf(args, "%d %X", &n_byte, &to_cal);
+	int n_byte = INT_MAX;
+	char* to_cal = NULL;
+	sscanf(args, "%d %s", &n_byte, to_cal);
 
-	printf("%d %X\n", n_byte, to_cal);
+	if (n_byte == INT_MAX || to_cal == NULL)
+		return 0;
+	else
+	{
+		bool success = true;
+		uint32_t addr = expr(to_cal, &success);
+		printf("0x%08x: ", addr);
+		for (int i = 0; i < n_byte; i++)
+		{
+			int val = vaddr_read(addr + i, 1);
+			printf("0x%02X ", val);
+		}
+		printf("\n");
+		return 0;
+	}
 
 	/*
 	int xdir_int = XtoD(atoi(xdir));
