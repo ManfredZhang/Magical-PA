@@ -102,7 +102,7 @@ static int cmd_x(char *args)
 		printf("0x%08x: ", addr);
 
 		printf("0x ");
-		for (int i = 0; i < n_byte; i++)
+		for (int i = 0; i < n_byte*4; i++)
 		{
 			int val = vaddr_read(addr + i, 1);
 			printf("%02X ", val);
@@ -111,21 +111,6 @@ static int cmd_x(char *args)
 		return 0;
 	}
 
-	/*
-	int xdir_int = XtoD(atoi(xdir));
-	uint32_t xdir_u = xdir_int;
-	for (int i = 0; i < 4*(xnum_int); i++)
-	{
-		if (i % 4 == 0)
-			printf("0x");
-		if (vaddr_read(xdir_u+i, 1) < 16)
-			printf("0");
-		printf("%X",vaddr_read(xdir_u+i, 1));
-		if (i % 4 == 3)
-			printf("\n");
-	}
-	//printf("0x%X\n",vaddr_read(xdir_u+ xnum_int - , 1));
-*/
 	return 0;
 }
 
