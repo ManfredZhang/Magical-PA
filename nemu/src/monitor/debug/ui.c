@@ -85,13 +85,12 @@ int XtoD(int he)
 }
 static int cmd_x(char *args)
 {
-	//char *xnum = strtok(args, " ");
-	//char *xdir = xnum + strlen(xnum) + 3;
-	//int xnum_int = atoi(xnum);
+	char *xnum = strtok(args, " ");
+	char *to_cal = xnum + strlen(xnum) + 1;
+	int n_byte = atoi(xnum);
+	n_byte = INT_MAX;
 
-	int n_byte = INT_MAX;
-	char* to_cal = NULL;
-	sscanf(args, "%d %s", &n_byte, to_cal);
+	sscanf(xnum, "%d", &n_byte);
 	printf("%d %s\n", n_byte, to_cal);
 
 	if (n_byte == INT_MAX || to_cal == NULL)
