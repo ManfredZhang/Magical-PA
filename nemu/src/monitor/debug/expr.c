@@ -17,27 +17,31 @@ enum {
 static struct rule {
   char *regex;
   int token_type;
+  int level;
+  int single;
 } rules[] = {
 
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},
-  {"\\-", '-'},  
-  {"\\*", '*'}, 
-  {"\\/", '/'}, 
-  {"\\(", '('}, 
-  {"\\)", ')'},
-  {"0x[0-9a-fA-F]{1,32}", HEX}, 
-  {"\\$[a-zA-Z]+", REG},
-  {"[0-9]{1,32}", NUM},
-  {"==", TK_EQ},         // equal
-  {"!=", TK_NEQ},
-  {"&&", AND},
-  {"\\|\\|", OR},
-  {"\\!", NOT},
+  {" +", TK_NOTYPE, 100, false},    // spaces
+  {"\\+", '+', 70, false},
+  {"\\-", '-', 70, false},  
+  {"\\*", '*', 80, false}, 
+  {"\\/", '/', 80, false}, 
+  {"\\(", '(', 100, false}, 
+  {"\\)", ')', 100, false},
+  {"0x[0-9a-fA-F]{1,32}", HEX, 100, false}, 
+  {"\\$[a-zA-Z]+", REG, 100, false},
+  {"[0-9]{1,32}", NUM, 100, false},
+  {"==", TK_EQ, 60, false}, 
+  {"!=", TK_NEQ, 60, false},
+  {"&&", AND, 50, false},
+  {"\\|\\|", OR, 50, false},
+  {"\\!", NOT, 60, true},
+  {"\\*", DEREF, 90, true},
+  {"-", NEG, 90, true},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -52,7 +56,7 @@ void init_regex() {
   char error_msg[128];
   int ret;
 
-  for (i = 0; i < NR_REGEX; i ++) {
+  for (i = 0; i < NR_REGEX; i++) {
     ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
     if (ret != 0) {
       regerror(ret, &re[i], error_msg, 128);
@@ -305,10 +309,6 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("scan:\n");
-  for (int i = 0; i < 10; i++)
-	  printf("%d %s\n", tokens[i].type, tokens[i].str);
-//printf("break1\n");
   for(int i = 0; i < nr_token; i++) 
   {
 	int adj_type = 0;
@@ -316,15 +316,15 @@ uint32_t expr(char *e, bool *success) {
 		adj_type = tokens[i-1].type;
 	else
 		adj_type = tokens[i].type;
-	if (tokens[i].type == '*' && (i == 0 || adj_type =='+' || adj_type  == '-' || adj_type == DEREF || adj_type == '*' || adj_type == '/')) 
+	if (tokens[i].type == '*' && (i == 0 || (adj_type != '(' && adj_type != ')' && adj_type != HEX && adj_type != REG && adj_type != NUM ))) 
 		tokens[i].type = DEREF;
-	if (tokens[i].type == '-' && (i == 0 || adj_type =='+' || adj_type  == '-' || adj_type == NEG || adj_type == '*' || adj_type =='/')) 
+	if (tokens[i].type == '-' && (i == 0 || (adj_type != '(' && adj_type != ')' && adj_type != HEX && adj_type != REG && adj_type != NUM ))) 
 		tokens[i].type = NEG;
   }
-//printf("break2\n");
 
-  //for (int i = 0; i < 10; i++)
-	//  printf("scan: %d %s\n", tokens[i].type, tokens[i].str); 
+  printf("scan:\n");
+  for (int i = 0; i < 10; i++)
+	  printf("%d %s\n", tokens[i].type, tokens[i].str);
 
   return eval(0, nr_token - 1);  
 
