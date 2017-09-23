@@ -92,6 +92,7 @@ static int cmd_x(char *args)
 	int n_byte = INT_MAX;
 	char* to_cal = NULL;
 	sscanf(args, "%d %s", &n_byte, to_cal);
+	printf("%d %s\n", n_byte, to_cal);
 
 	if (n_byte == INT_MAX || to_cal == NULL)
 		return 0;
