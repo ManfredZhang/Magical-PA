@@ -3,6 +3,7 @@
 #include "monitor/watchpoint.h"
 #include "nemu.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -38,7 +39,6 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
-//PA1 si
 static int cmd_si(char *args) {
 	uint64_t sinum = 1;
 	if (args == NULL)
@@ -52,18 +52,16 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
-//PA1-1 info r
 static int cmd_info(char *args)
 {
 	if (!strcmp(args,"r"))
 	{
-		printf("eax:0x%08X  ecx:0x%08X  edx:0x%08X  ebx:0x%08X\nesp:0x%08X  ebp:0x%08X  esi:0x%08X edi:0x%08X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
+		printf("eax:0x%08X  ecx:0x%08X  edx:0x%08X  ebx:0x%08X\nesp:0x%08X  ebp:0x%08X  esi:0x%08X  edi:0x%08X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
 		printf("eip:0x%08X\n", cpu.eip);
 	}
 	return 0;
 }
 
-//PA1-2
 static int cmd_p(char *args)
 {
 	bool success = true;
@@ -71,7 +69,6 @@ static int cmd_p(char *args)
 	return 0;
 }
 
-//PA1-1 x N EXPR
 int XtoD(int he)
 {   
 	int re = 0;   // 保存转换为10进制的结果
@@ -87,10 +84,17 @@ int XtoD(int he)
 }
 static int cmd_x(char *args)
 {
-	char *xnum = strtok(args, " ");
-	char *xdir = xnum + strlen(xnum) + 3;
-	int xnum_int = atoi(xnum);
+	//char *xnum = strtok(args, " ");
+	//char *xdir = xnum + strlen(xnum) + 3;
+	//int xnum_int = atoi(xnum);
 
+	int n_byte = 0;
+	int to_cal = 0;
+	sscanf(args, "%d %X", &n_byte, &to_cal);
+
+	printf("%d %X\n", n_byte, to_cal);
+
+	/*
 	int xdir_int = XtoD(atoi(xdir));
 	uint32_t xdir_u = xdir_int;
 	for (int i = 0; i < 4*(xnum_int); i++)
@@ -104,7 +108,7 @@ static int cmd_x(char *args)
 			printf("\n");
 	}
 	//printf("0x%X\n",vaddr_read(xdir_u+ xnum_int - , 1));
-
+*/
 	return 0;
 }
 
