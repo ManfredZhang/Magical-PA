@@ -183,24 +183,6 @@ int get_dominant_op(int p, int q)
 	}
 	panic("zmf: Can't find dominate op");
 	return 0;
-	/*
-	if (cut == p) 
-		for (int i = p; i <= q; i++) 
-		{
-			if (tokens[i].type == '(') inper++;
-			if (tokens[i].type == ')') inper--;
-			if ((tokens[i].type == '*' || tokens[i].type == '/') && (inper == 0))
-				cut = i;
-		}
-	if (cut == p) 
-		for (int i = p; i <= q; i++) 
-		{
-			if (tokens[i].type == '(') inper++;
-			if (tokens[i].type == ')') inper--;
-			if ((tokens[i].type == TK_EQ) && (inper == 0)) 
-				cut = i;
-		}
-	return cut;*/
 }
 
 uint32_t eval(int p, int q)
