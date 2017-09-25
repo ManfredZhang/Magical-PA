@@ -30,4 +30,12 @@ void free_wp(WP* wp)
 	TODO();
 }
 
+uint32_t watch(char* args, bool* success)
+{
+	WP* wp_new = new_wp();
+	wp_new -> record_expr = args;
+	wp_new -> current_val = expr(args, success);
+
+	return 0;
+}
 

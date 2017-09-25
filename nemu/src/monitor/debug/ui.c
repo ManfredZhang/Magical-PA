@@ -70,19 +70,13 @@ static int cmd_p(char *args)
 	return 0;
 }
 
-int XtoD(int he)
-{   
-	int re = 0;   // 保存转换为10进制的结果
-	int k = 16;   // 16进制
-	int n = 1;    // 位权
-	while(he != 0)  
-	{
-		re += (he%10)*n;  // 取出各位位码值，并乘以对应的位权值
-		he /= 10;   // 去掉16进制数的最低位，次低位变为最低位
-		n *= k;     // 位权乘以16
-	}
-	return re; // 输出转换后的结果
+static int cmd_w(char *args)
+{
+	bool success = true;
+	printf("%d\n", watch(args,&success));
+	return 0;
 }
+
 static int cmd_x(char *args)
 {
 	char *xnum = strtok(args, " ");
@@ -123,13 +117,14 @@ static struct {
   char *description;
   int (*handler) (char *);
 } cmd_table [] = {
-  { "help", "Display informations about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
-  { "si", "Step for [N] times", cmd_si },
-  { "info", "Information for reg/watch", cmd_info },
-  { "x", "将expr结果作为起始内存地址, 以十六进制形式输出连续的N个4字节", cmd_x },
-  { "p", "打印表达式expr", cmd_p },
+  { "help",	 "Display informations about all supported commands"	, cmd_help },
+  { "c",	 "Continue the execution of the program"				, cmd_c },
+  { "q",	 "Exit NEMU"											, cmd_q },
+  { "si",	 "Step for [N] times"									, cmd_si },
+  { "info",	 "Information for reg/watch"							, cmd_info },
+  { "x",	 "将expr结果作为起始内存地址, 以十六进制输出N个4字节"	, cmd_x },
+  { "p",	 "打印表达式expr"										, cmd_p },
+  { "w",	 "监视表达式内容,若变化则暂停程序执行"					, cmd_w },
 
   /* TODO: Add more commands */
 
