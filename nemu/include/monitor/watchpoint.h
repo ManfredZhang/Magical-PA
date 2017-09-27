@@ -13,6 +13,5 @@ typedef struct watchpoint {
   uint32_t current_val;
 } WP;
 
-uint32_t watch(char *args, bool *success);
 
 #endif

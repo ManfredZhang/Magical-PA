@@ -10,6 +10,8 @@
 #include <readline/history.h>
 
 void cpu_exec(uint64_t);
+uint32_t watch(char*, bool*);
+void free_wp(int);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -77,6 +79,12 @@ static int cmd_w(char *args)
 	return 0;
 }
 
+static int cmd_d(char *args)
+{
+	free_wp(atoi(args));
+	return 0;
+}
+
 static int cmd_x(char *args)
 {
 	char *xnum = strtok(args, " ");
@@ -125,6 +133,7 @@ static struct {
   { "x",	 "将expr结果作为起始内存地址, 以十六进制输出N个4字节"	, cmd_x },
   { "p",	 "打印表达式expr"										, cmd_p },
   { "w",	 "监视表达式内容,若变化则暂停程序执行"					, cmd_w },
+  { "d",	 "删除监视点"											, cmd_d },
 
   /* TODO: Add more commands */
 

@@ -27,24 +27,39 @@ WP* new_wp()
 	else
 	{
 		WP *a_new_wp = free_;
-		if (head == NULL)
-			head = free_;
-		else
-		{
-			head -> next = head;
-			head = free_;
-		}
 		free_ = free_ -> next;
+
+		a_new_wp -> next = head;
+		head = a_new_wp;
 		return a_new_wp;
 	}
 }
 
-void free_wp(WP* wp)
+void free_wp(int watch_num)
 {
-	TODO();
+	WP *temp_head = head;
+	WP *temp_head_2 = head;
+	while (temp_head -> next != NULL)
+	{
+		if (temp_head -> NO != watch_num)
+		{
+			temp_head = temp_head -> next;
+			continue;
+		}
+
+		while (temp_head_2 -> next != temp_head)
+			temp_head_2 = temp_head_2 -> next;
+		temp_head_2 -> next = temp_head -> next;
+
+		temp_head -> next = free_;
+		free_ = temp_head;
+		printf("Watchpoint #%d was deleted successfully\n", watch_num);
+		return;
+	}
+	printf ("zmf: Sorry, but there's no such watchpoint\n");
 }
 
-uint32_t watch(char* args, bool* success)
+uint32_t watch(char *args, bool *success)
 {
 	WP* a_new_wp = new_wp();
 	a_new_wp -> record_expr = args;
