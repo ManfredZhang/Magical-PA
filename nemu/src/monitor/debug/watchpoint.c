@@ -40,7 +40,7 @@ void free_wp(int watch_num)
 	//printf("watch_num = %d\n", watch_num);
 	WP *temp_head = head;
 	WP *temp_head_2 = head;
-	while (temp_head -> next != NULL)
+	while (temp_head != NULL)
 	{
 		if (temp_head -> NO != watch_num)
 		{
@@ -50,7 +50,7 @@ void free_wp(int watch_num)
 
 		while (temp_head_2 -> next != temp_head)
 			temp_head_2 = temp_head_2 -> next;
-		//temp_head_2 -> next = temp_head -> next;
+		temp_head_2 -> next = temp_head -> next;
 
 		temp_head -> next = free_;
 		free_ = temp_head;
