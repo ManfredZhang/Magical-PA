@@ -42,8 +42,7 @@ void free_wp(int watch_num)
 
 	if (watch_num > 9998)
 	{
-		head = NULL;
-		free_ = wp_pool;
+		init_wp_pool();
 		printf("zmf: No more watchpoints left!\n");
 		return;
 	}
