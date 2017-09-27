@@ -41,7 +41,7 @@ void free_wp(int watch_num)
 	WP *temp_head = head;
 	printf("0\n");
 	WP *temp_head_2 = head;
-	printf("0.5\n");
+	printf("tempheadnum %d\n", temp_head -> NO);
 
 	while (temp_head != NULL)
 	{
