@@ -4,7 +4,9 @@
 #define NR_WP 32
 
 static WP wp_pool[NR_WP];
-static WP *head, *free_;
+static WP *head, *free_;	
+// head指向最新添加到监视中链表的WP
+// free指向下一个要new的监视点
 
 void init_wp_pool() {
   int i;
@@ -20,9 +22,21 @@ void init_wp_pool() {
 
 WP* new_wp()
 {
-	if (free_ -> NO == 0)
-		printf("go\n");
-	return free_;
+	if (free_ == NULL)
+		assert(0);
+	else
+	{
+		WP *a_new_wp = free_;
+		if (head == NULL)
+			head = free_;
+		else
+		{
+			head -> next = head;
+			head = free_;
+		}
+		free_ = free_ -> next;
+		return a_new_wp;
+	}
 }
 
 void free_wp(WP* wp)
@@ -32,10 +46,10 @@ void free_wp(WP* wp)
 
 uint32_t watch(char* args, bool* success)
 {
-	WP* wp_new = new_wp();
-	wp_new -> record_expr = args;
-	wp_new -> current_val = expr(args, success);
+	WP* a_new_wp = new_wp();
+	a_new_wp -> record_expr = args;
+	a_new_wp -> current_val = expr(args, success);
 
-	return 0;
+	return a_new_wp -> current_val;
 }
 
