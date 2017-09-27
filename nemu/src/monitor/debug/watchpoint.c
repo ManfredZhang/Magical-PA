@@ -49,7 +49,7 @@ uint32_t watch(char* args, bool* success)
 	WP* a_new_wp = new_wp();
 	a_new_wp -> record_expr = args;
 	a_new_wp -> current_val = expr(args, success);
-	printf("Created a new watchpoint #%d", a_new_wp -> NO);
+	printf("Created a new watchpoint #%d with a current value: ", a_new_wp -> NO);
 
 	return a_new_wp -> current_val;
 }
