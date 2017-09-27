@@ -40,6 +40,14 @@ void free_wp(int watch_num)
 	WP *temp_head = head;
 	WP *temp_head_2 = head;
 
+	if (watch_num > 9998)
+	{
+		head = NULL;
+		free_ = wp_pool;
+		printf("zmf: No more watchpoints left!\n");
+		return;
+	}
+
 	while (temp_head != NULL)
 	{
 		//printf("temp head num %d\n", temp_head -> NO);
