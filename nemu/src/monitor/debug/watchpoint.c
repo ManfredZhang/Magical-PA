@@ -43,15 +43,21 @@ void free_wp(int watch_num)
 
 	while (temp_head != NULL)
 	{
-		printf("tempheadnum %d\n", temp_head -> NO);
+		printf("temp head num %d\n", temp_head -> NO);
 		if (temp_head -> NO != watch_num)
 		{	
 			printf("1\n");
 			temp_head = temp_head -> next;
 			continue;
 		}
-
-		while (temp_head_2 != temp_head)
+		if (head == temp_head)
+		{
+			temp_head -> next = free_;
+			free_ = temp_head;
+			head = NULL;
+			return;
+		}
+		while (temp_head_2 -> next != temp_head)
 			temp_head_2 = temp_head_2 -> next;
 		printf("2\n");
 
