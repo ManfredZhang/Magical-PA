@@ -52,7 +52,7 @@ void free_wp(int watch_num)
 			continue;
 		}
 
-		while (temp_head_2 -> next != temp_head)
+		while (temp_head_2 != temp_head)
 			temp_head_2 = temp_head_2 -> next;
 		printf("2\n");
 
