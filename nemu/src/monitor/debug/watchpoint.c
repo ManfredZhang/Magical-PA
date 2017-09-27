@@ -38,15 +38,13 @@ WP* new_wp()
 void free_wp(int watch_num)
 {
 	WP *temp_head = head;
-	printf("0\n");
 	WP *temp_head_2 = head;
 
 	while (temp_head != NULL)
 	{
-		printf("temp head num %d\n", temp_head -> NO);
+		//printf("temp head num %d\n", temp_head -> NO);
 		if (temp_head -> NO != watch_num)
 		{	
-			printf("1\n");
 			temp_head = temp_head -> next;
 			continue;
 		}
@@ -55,21 +53,16 @@ void free_wp(int watch_num)
 			head = temp_head -> next;
 			temp_head -> next = free_;
 			free_ = temp_head;
+			printf("Watchpoint #%d was deleted successfully\n", watch_num);
+			if (head == NULL)
+				printf("zmf: No more watchpoints left\n");
 			return;
 		}
 		while (temp_head_2 -> next != temp_head)
 			temp_head_2 = temp_head_2 -> next;
-		printf("2\n");
-
 		temp_head_2 -> next = temp_head -> next;
-		printf("3\n");
-
 		temp_head -> next = free_;
-		printf("4\n");
-
 		free_ = temp_head;
-		printf("5\n");
-
 		printf("Watchpoint #%d was deleted successfully\n", watch_num);
 		return;
 	}
