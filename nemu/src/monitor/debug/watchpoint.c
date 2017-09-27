@@ -52,9 +52,9 @@ void free_wp(int watch_num)
 		}
 		if (head == temp_head)
 		{
+			head = temp_head -> next;
 			temp_head -> next = free_;
 			free_ = temp_head;
-			head = NULL;
 			return;
 		}
 		while (temp_head_2 -> next != temp_head)
