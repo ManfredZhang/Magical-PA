@@ -37,7 +37,6 @@ WP* new_wp()
 
 void free_wp(int watch_num)
 {
-	printf("watch_num = %d\n", watch_num);
 	WP *temp_head = head;
 	printf("0\n");
 	WP *temp_head_2 = head;
@@ -47,7 +46,7 @@ void free_wp(int watch_num)
 		printf("tempheadnum %d\n", temp_head -> NO);
 		if (temp_head -> NO != watch_num)
 		{	
-			printf("a\n");
+			printf("1\n");
 			temp_head = temp_head -> next;
 			continue;
 		}
