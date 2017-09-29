@@ -10,6 +10,8 @@ typedef struct watchpoint {
   /* TODO: Add more members if necessary */
 	
   char record_expr[128];
+  //char *record_expr;
+
   uint32_t current_val;
 } WP;
 

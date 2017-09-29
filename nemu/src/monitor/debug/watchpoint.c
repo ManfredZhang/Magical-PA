@@ -110,5 +110,16 @@ bool every_check()
 	return flag;
 }
 
+void info_w()
+{
+		printf("Num		Type		   What\n");
+	WP *temp = head;
+	while (temp != NULL)
+	{
+		printf("%-3d	watchpoint	   %-7s\n", temp -> NO, temp -> record_expr);
+		temp = temp -> next;
+	}
+}
+
 
 
