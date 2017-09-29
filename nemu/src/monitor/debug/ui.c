@@ -12,6 +12,7 @@
 void cpu_exec(uint64_t);
 uint32_t watch(char*, bool*);
 void free_wp(int);
+void info_w();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
@@ -61,6 +62,10 @@ static int cmd_info(char *args)
 	{
 		printf("eax:0x%08X  ecx:0x%08X  edx:0x%08X  ebx:0x%08X\nesp:0x%08X  ebp:0x%08X  esi:0x%08X  edi:0x%08X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
 		printf("eip:0x%08X\n", cpu.eip);
+	}
+	else
+	{
+		info_w();
 	}
 	return 0;
 }
