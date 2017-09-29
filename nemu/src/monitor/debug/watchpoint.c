@@ -93,6 +93,7 @@ bool every_check()
 	bool flag = false;
 	while (temp_head != NULL)
 	{
+		printf("\n%s\n", temp_head->record_expr);
 		int val = expr(temp_head -> record_expr, &success);
 		if (val != temp_head -> current_val)
 		{
