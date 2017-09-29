@@ -39,8 +39,6 @@ void cpu_exec(uint64_t n) {
     extern void device_update();
     device_update();
 #endif
-	//if (every_check())
-	//	nemu_state = NEMU_STOP;
     if (nemu_state != NEMU_RUNNING) { return; }
   }
 
