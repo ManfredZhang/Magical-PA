@@ -80,7 +80,6 @@ uint32_t watch(char *args, bool *success)
 {
 	WP* a_new_wp = new_wp();
 	a_new_wp -> record_expr = args;
-	printf("222\n");
 	a_new_wp -> current_val = expr(args, success);
 	printf("Created a new watchpoint #%d\nvalue: ", a_new_wp -> NO);
 
@@ -95,6 +94,8 @@ bool every_check()
 	while (temp_head != NULL)
 	{
 		printf("111\n");
+		printf("%s\n",temp_head->record_expr);
+		assert(0);
 		int val = expr(temp_head -> record_expr, &success);
 		if (val != temp_head -> current_val)
 		{
