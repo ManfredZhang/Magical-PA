@@ -86,3 +86,25 @@ uint32_t watch(char *args, bool *success)
 	return a_new_wp -> current_val;
 }
 
+bool every_check()
+{
+	WP *temp_head = head;
+	bool success = true;
+	bool flag = false;
+	while (temp_head != NULL)
+	{
+		int val = expr(temp_head -> record_expr, &success);
+		if (val != temp_head -> current_val)
+		{
+			flag = true;
+			printf("\nzmf stopped the nemu at watchpoint #%d: %s\n", temp_head -> NO, temp_head -> record_expr);
+			printf("\nOld value = %d\n", temp_head -> current_val);
+			printf("New value = %d\n", val);
+		}
+		temp_head = temp_head -> next;
+	}
+	return flag;
+}
+
+
+
