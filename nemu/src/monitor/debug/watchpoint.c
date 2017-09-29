@@ -94,7 +94,7 @@ bool every_check()
 	while (temp_head != NULL)
 	{
 		printf("111\n");
-		printf("%s\n",temp_head->record_expr);
+		printf("%d\n",temp_head->NO);
 		assert(0);
 		int val = expr(temp_head -> record_expr, &success);
 		if (val != temp_head -> current_val)
