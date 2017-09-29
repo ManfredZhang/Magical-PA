@@ -60,7 +60,6 @@ void free_wp(int watch_num)
 			head = temp_head -> next;
 			temp_head -> next = free_;
 			free_ = temp_head;
-			printf("%s\n",free_->record_expr);
 			printf("Watchpoint #%d was deleted successfully\n", watch_num);
 			if (head == NULL)
 				printf("zmf: No more watchpoints left\n");
@@ -81,7 +80,7 @@ uint32_t watch(char *args, bool *success)
 {
 	WP* a_new_wp = new_wp();
 	strcpy(a_new_wp -> record_expr, args);
-	printf("%s\n",a_new_wp->record_expr);
+	//printf("%s\n",a_new_wp->record_expr);
 	a_new_wp -> current_val = expr(args, success);
 	printf("Created a new watchpoint #%d\nvalue: ", a_new_wp -> NO);
 
@@ -95,9 +94,8 @@ bool every_check()
 	bool flag = false;
 	while (temp_head != NULL)
 	{
-		printf("111\n");
-		printf("%s\n",head->record_expr);
-		assert(0);
+		//printf("%s\n",head->record_expr);
+		
 		int val = expr(temp_head -> record_expr, &success);
 		if (val != temp_head -> current_val)
 		{
