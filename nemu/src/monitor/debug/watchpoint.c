@@ -79,7 +79,7 @@ void free_wp(int watch_num)
 uint32_t watch(char *args, bool *success)
 {
 	WP* a_new_wp = new_wp();
-	a_new_wp -> record_expr = args;
+	a_new_wp -> record_expr = args;printf("\n%s\n", args);
 	a_new_wp -> current_val = expr(args, success);
 	printf("Created a new watchpoint #%d\nvalue: ", a_new_wp -> NO);
 
