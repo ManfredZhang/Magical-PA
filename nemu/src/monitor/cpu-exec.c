@@ -30,8 +30,8 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
-	if (every_check())
-		nemu_state = NEMU_STOP;
+	//if (every_check())
+	//	nemu_state = NEMU_STOP;
 
 #endif
 
@@ -39,7 +39,8 @@ void cpu_exec(uint64_t n) {
     extern void device_update();
     device_update();
 #endif
-
+	if (every_check())
+		nemu_state = NEMU_STOP;
     if (nemu_state != NEMU_RUNNING) { return; }
   }
 
