@@ -103,6 +103,7 @@ bool every_check()
 			printf("\nzmf stopped the nemu at watchpoint #%d: %s\n", temp_head -> NO, temp_head -> record_expr);
 			printf("\nOld value = %d\n", temp_head -> current_val);
 			printf("New value = %d\n", val);
+			temp_head -> current_val = val;
 		}
 		temp_head = temp_head -> next;
 	}
