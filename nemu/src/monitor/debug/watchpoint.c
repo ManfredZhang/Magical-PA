@@ -60,6 +60,7 @@ void free_wp(int watch_num)
 			head = temp_head -> next;
 			temp_head -> next = free_;
 			free_ = temp_head;
+			printf("%s\n",free_->record_expr);
 			printf("Watchpoint #%d was deleted successfully\n", watch_num);
 			if (head == NULL)
 				printf("zmf: No more watchpoints left\n");
