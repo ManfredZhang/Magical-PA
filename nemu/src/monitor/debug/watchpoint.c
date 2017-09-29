@@ -116,7 +116,7 @@ void info_w()
 	WP *temp = head;
 	while (temp != NULL)
 	{
-		printf("%-3d	watchpoint	   %-7s\n", temp -> NO, temp -> record_expr);
+		printf("%d		watchpoint%-7s\n", temp -> NO, temp -> record_expr);
 		temp = temp -> next;
 	}
 }
