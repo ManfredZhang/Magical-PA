@@ -29,6 +29,11 @@ $(OBJ_DIR)/%.o: src/%.c
 
 # Some convinient rules
 
+count :
+	find . -name "*.[hc]"|xargs cat|grep -v ^$$|wc -l
+	@echo "lines without empty lines"
+
+
 .PHONY: app run submit clean
 app: $(BINARY)
 
