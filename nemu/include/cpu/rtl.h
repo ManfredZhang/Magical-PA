@@ -145,9 +145,7 @@ static inline void rtl_push(const rtlreg_t* src1) {
   //TODO();
   cpu.esp -= 4;
 
-  //bool success = true;
-  //vaddr_write(cpu.esp, 4, expr(id_dest->str,&success));
-  //printf("zzmf: %s\n", expr(id_dest->str,&success));
+  vaddr_write(cpu.esp, 4, *src1);
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {
