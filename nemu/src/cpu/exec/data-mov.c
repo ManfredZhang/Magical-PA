@@ -1,4 +1,5 @@
 #include "cpu/exec.h"
+#include "monitor/expr.h"
 
 make_EHelper(mov) {
   operand_write(id_dest, &id_src->val);
@@ -7,12 +8,10 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   //TODO();
-  //uint8_t temp = id_dest->val;
-  //cpu.esp -= 4;
-  //vaddr_write(cpu.esp, 4, temp);
-  printf("zzmf: %s\n", id_dest->str);
-  TODO();
-  //rtl_push(&aoa);
+  //printf("zzmf: %s\n", id_dest->str);
+  bool success = true;
+  uint32_t temp_data_mov = expr(id_dest->str, &success);
+  rtl_push(&temp_data_mov);
   print_asm_template1(push);
   
 }
