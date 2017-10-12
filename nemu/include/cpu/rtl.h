@@ -144,7 +144,7 @@ static inline void rtl_push(const rtlreg_t* src1) {
   // M[esp] <- src1
   //TODO();
   cpu.esp -= 4;
-
+  printf("zzmf: %u\n", *src1);
   vaddr_write(cpu.esp, 4, *src1);
 }
 
