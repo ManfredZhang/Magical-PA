@@ -111,11 +111,9 @@ static inline void rtl_sr(int r, int width, const rtlreg_t* src1) {
   }
 }
 
-//#define rtl_set_CF(src)  (rtl_sr_b(CF, src))
-
 #define make_rtl_setget_eflags(f) \
   static inline void concat(rtl_set_, f) (const rtlreg_t* src) { \
-	TODO(); \
+	TODO();\
   } \
   static inline void concat(rtl_get_, f) (rtlreg_t* dest) { \
 	TODO();\
