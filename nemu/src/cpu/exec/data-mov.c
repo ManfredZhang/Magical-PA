@@ -10,8 +10,9 @@ make_EHelper(push) {
   //uint8_t temp = id_dest->val;
   //cpu.esp -= 4;
   //vaddr_write(cpu.esp, 4, temp);
-  uint32_t aoa = 1;
-  rtl_push(&aoa);
+  printf("zzmf: %s\n", id_dest->str);
+  TODO();
+  //rtl_push(&aoa);
   print_asm_template1(push);
   
 }

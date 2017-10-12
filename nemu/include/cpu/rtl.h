@@ -142,7 +142,12 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
 static inline void rtl_push(const rtlreg_t* src1) {
   // esp <- esp - 4
   // M[esp] <- src1
-  TODO();
+  //TODO();
+  cpu.esp -= 4;
+
+  //bool success = true;
+  //vaddr_write(cpu.esp, 4, expr(id_dest->str,&success));
+  //printf("zzmf: %s\n", expr(id_dest->str,&success));
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {
