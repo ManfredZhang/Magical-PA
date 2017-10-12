@@ -13,7 +13,7 @@ make_EHelper(push) {
   uint32_t aoa = 1;
   rtl_push(&aoa);
   print_asm_template1(push);
-  TODO();
+  
 }
 
 make_EHelper(pop) {
