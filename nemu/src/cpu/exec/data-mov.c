@@ -7,10 +7,13 @@ make_EHelper(mov) {
 
 make_EHelper(push) {
   //TODO();
-  uint8_t temp = id_dest->val;
-  cpu.esp -= 4;
-  vaddr_write(cpu.esp, 4, temp);
+  //uint8_t temp = id_dest->val;
+  //cpu.esp -= 4;
+  //vaddr_write(cpu.esp, 4, temp);
+  uint32_t aoa = 1;
+  rtl_push(&aoa);
   print_asm_template1(push);
+  TODO();
 }
 
 make_EHelper(pop) {
