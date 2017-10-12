@@ -1,4 +1,5 @@
 #include "cpu/exec.h"
+#include "cpu/rtl.h"
 
 make_EHelper(jmp) {
   // the target address is calculated at the decode stage
@@ -26,7 +27,9 @@ make_EHelper(jmp_rm) {
 make_EHelper(call) {
   // 跳转
   // the target address is calculated at the decode stage 
+  cpu.eip += id_dest->val;
   decoding.is_jmp = 1;
+
 
   // 保存ret到哪
   cpu.esp -= 4;
