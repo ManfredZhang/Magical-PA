@@ -32,7 +32,7 @@ typedef struct {
 		rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 	 };
 
-	struct {
+	union {
 		uint32_t EFLAGS;
 		struct {
 			uint8_t CF :1;
@@ -44,7 +44,7 @@ typedef struct {
 			uint8_t ud2 :1;
 			uint8_t OF :1;
 			uint32_t ud3 :20;
-		};
+		} flags;
 	};
   };
   vaddr_t eip;
