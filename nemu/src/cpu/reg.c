@@ -41,3 +41,4 @@ void reg_test() {
 
   assert(eip_sample == cpu.eip);
 }
+//cpu.eax
