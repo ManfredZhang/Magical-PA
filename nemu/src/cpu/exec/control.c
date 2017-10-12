@@ -30,7 +30,7 @@ make_EHelper(call) {
 
   // 保存ret到哪
   cpu.esp -= 4;
-  vaddr_write(cpu.esp, 4, cpu.eip+5);
+  //vaddr_write(cpu.esp, 4, cpu.eip+5);
 
   print_asm("call %x", decoding.jmp_eip);
 }
