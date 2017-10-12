@@ -27,13 +27,13 @@ make_EHelper(jmp_rm) {
 make_EHelper(call) {
   // 跳转
   // the target address is calculated at the decode stage 
-  cpu.eip += id_dest->val;
+  decoding.jmp_eip += id_dest->val;
   decoding.is_jmp = 1;
 
 
   // 保存ret到哪
   cpu.esp -= 4;
- // vaddr_write(cpu.esp, 4, cpu.eip+5);
+  vaddr_write(cpu.esp, 4, cpu.eip+5);
 
   print_asm("call %x", decoding.jmp_eip);
 }
