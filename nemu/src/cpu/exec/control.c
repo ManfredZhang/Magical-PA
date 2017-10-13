@@ -39,7 +39,8 @@ make_EHelper(call) {
 }
 
 make_EHelper(ret) {
-  cpu.eip = vaddr_read(cpu.esp,4);
+  decoding.jmp_eip = vaddr_read(cpu.esp,4);
+  decoding.is_jmp = 1;
   cpu.esp += 4;
   print_asm("ret");
 }
