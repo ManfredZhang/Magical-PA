@@ -39,8 +39,8 @@ make_EHelper(call) {
 }
 
 make_EHelper(ret) {
-  TODO();
-
+  cpu.eip = vaddr_read(cpu.esp,4);
+  cpu.esp += 4;
   print_asm("ret");
 }
 
