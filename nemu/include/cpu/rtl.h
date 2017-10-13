@@ -152,7 +152,7 @@ static inline void rtl_pop(rtlreg_t* dest) {
   // dest <- M[esp]
   // esp <- esp + 4
   //TODO();
-  vaddr_write(*dest, 4, cpu.esp);
+  *dest = cpu.esp;
   cpu.esp += 4;
 }
 
