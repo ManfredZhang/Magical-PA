@@ -152,7 +152,7 @@ static inline void rtl_pop(rtlreg_t* dest) {
   // dest <- M[esp]
   // esp <- esp + 4
   //TODO();
-  *dest = cpu.esp;
+  vaddr_write(*dest, 4, cpu.esp);
   cpu.esp += 4;
 }
 
@@ -178,12 +178,24 @@ static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
-  TODO();
+  //TODO();
+  bool temp_rtlh = true;
+  for (int i = 0; i < width*8; i++)
+	  if (result[i] != 0)
+		  temp_rtlh = false;
+  if (temp_rtlh)
+	  cpu.flags.ZF = 1;
+  else
+	  cpu.flags.ZF = 0;
 }
 
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
-  TODO();
+  //TODO();
+  if (result[width * 8 - 1] == 1)
+	  cpu.flags.SF = 1;
+  else
+	  cpu.flags.SF = 0;
 }
 
 static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
