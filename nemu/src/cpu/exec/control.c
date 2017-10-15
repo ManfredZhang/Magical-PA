@@ -28,7 +28,7 @@ make_EHelper(call) {
   // call_rel32
   // 1: 跳转
   // the target address is calculated at the decode stage 
-  decoding.jmp_eip = *eip + 4 + id_dest->val;
+  decoding.jmp_eip = *eip + id_dest->val;
   decoding.is_jmp = 1;
 
   // 2：保存返回地址
