@@ -33,7 +33,7 @@ make_EHelper(call) {
 
   // 2：保存返回地址
   cpu.esp -= 4;
-  vaddr_write(cpu.esp, 4, cpu.eip+5);
+  vaddr_write(cpu.esp, 4, *eip);
 
   print_asm("call %x", decoding.jmp_eip);
 }
