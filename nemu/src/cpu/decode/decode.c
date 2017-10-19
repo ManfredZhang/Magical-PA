@@ -42,7 +42,7 @@ static inline make_DopHelper(SI) {
   uint32_t a = instr_fetch(eip, op->width);
   if (a >> 31 == 1)
 	  a += 0xffff0000;
-  printf("zzmf: %u\n",a >> 31);
+  printf("zzmf: %u\n",a);
   op->simm = a;
 
   rtl_li(&op->val, op->simm);
