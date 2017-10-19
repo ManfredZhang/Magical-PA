@@ -2,32 +2,19 @@
 
 make_EHelper(add) {
   rtl_add(&t2, &id_dest->val, &id_src->val);
-  //uint32_t arith_temp = id_src->val;
   operand_write(id_dest, &t2);
-  //operand_write(id_src, &arith_temp);
-  //printf("zzmf: %u\n",arith_temp);
 
-printf("zzmf: %u\n",id_src->val);
   rtl_update_ZFSF(&t2, id_dest->width);
-printf("zzmf: %u\n",id_src->val);
   rtl_sltu(&t0, &t2, &id_dest->val);
-printf("zzmf: %u\n",id_src->val);
   rtl_set_CF(&t0);
-printf("zzmf: %u\n",id_src->val);
   rtl_xor(&t0, &id_dest->val, &id_src->val);
-printf("zzmf: %u\n",id_src->val);
   rtl_not(&t0);
-printf("zzmf: %u\n",id_src->val);
   rtl_xor(&t1, &id_dest->val, &t2);
-printf("zzmf: %u\n",id_src->val);
   rtl_and(&t0, &t0, &t1);
-printf("zzmf: %u\n",id_src->val);
   rtl_msb(&t0, &t0, id_dest->width);
-printf("zzmf: %u\n",id_src->val);
   rtl_set_OF(&t0);
-printf("zzmf: %u\n",id_src->val);
 
-  //operand_write(id_src, &arith_temp);
+  operand_write(id_src, &id_src->val);
 
   print_asm_template2(add);
 }
