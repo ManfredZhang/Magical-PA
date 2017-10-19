@@ -33,17 +33,17 @@ typedef struct {
 	 };
 
 	union {
-		uint32_t EFLAGS;
+		volatile uint32_t EFLAGS;
 		struct {
-			uint8_t CF :1;
-			uint8_t undefined :5;
-			uint8_t ZF :1;
-			uint8_t SF :1;
-			uint8_t ud1 :1;
-			uint8_t IF :1;
-			uint8_t ud2 :1;
-			uint8_t OF :1;
-			uint32_t ud3 :20;
+			volatile uint8_t CF :1;
+			volatile uint8_t undefined :5;
+			volatile uint8_t ZF :1;
+			volatile uint8_t SF :1;
+			volatile uint8_t ud1 :1;
+			volatile uint8_t IF :1;
+			volatile uint8_t ud2 :1;
+			volatile uint8_t OF :1;
+			volatile uint32_t ud3 :20;
 		} flags;
 	};
   };
