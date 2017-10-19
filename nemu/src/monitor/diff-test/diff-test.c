@@ -182,31 +182,36 @@ void difftest_step(uint32_t eip) {
 	  printf("zmf: Not equal to QEMU @ cpu.edi = %u r.edi = %u\n", cpu.edi, r.edi);
   }
 
-  uint32_t rCF = r.eflags >> 31;
-  uint32_t rZF = (r.eflags << 6) >> 25;
-  uint32_t rSF = (r.eflags << 7) >> 24;
-  uint32_t rIF = (r.eflags << 9) >> 22;
-  uint32_t rOF = (r.eflags << 11) >> 20;
+  uint32_t rCF = 0; //r.eflags >> 31;
+  uint32_t rZF = 0; //(r.eflags << 6) >> 25;
+  uint32_t rSF = 0; //(r.eflags << 7) >> 24;
+  uint32_t rIF = 0; //(r.eflags << 9) >> 22;
+  uint32_t rOF = 0; //(r.eflags << 11) >> 20;
 
   if (cpu.flags.CF != rCF){
 	  //diff = true;
-	  printf("zmf: Not equal to QEMU @ cpu.flags.CF = %u, r.CF = %u\n", cpu.flags.CF, rCF);
+	  //printf("zmf: Not equal to QEMU @ cpu.flags.CF = %u, r.CF = %u\n", cpu.flags.CF, rCF);
+	  printf("CF\n");
   }
   if (cpu.flags.ZF != rZF){
-	  diff = true;
-	  printf("zmf: Not equal to QEMU @ cpu.flags.ZF = %u, r.ZF = %u\n", cpu.flags.ZF, rZF);
+	  //diff = true;
+	  //printf("zmf: Not equal to QEMU @ cpu.flags.ZF = %u, r.ZF = %u\n", cpu.flags.ZF, rZF);
+	  printf("ZF\n");
   }
   if (cpu.flags.SF != rSF){
-	  diff = true;
-	  printf("zmf: Not equal to QEMU @ cpu.flags.SF = %u, r.SF = %u\n", cpu.flags.SF, rSF);
+	  //diff = true;
+	  //printf("zmf: Not equal to QEMU @ cpu.flags.SF = %u, r.SF = %u\n", cpu.flags.SF, rSF);
+	  printf("SF\n");
   }
   if (cpu.flags.IF != rIF){
-	  diff = true;
-	  printf("zmf: Not equal to QEMU @ cpu.flags.IF = %u, r.IF = %u\n", cpu.flags.IF, rIF);
+	  //diff = true;
+	  //printf("zmf: Not equal to QEMU @ cpu.flags.IF = %u, r.IF = %u\n", cpu.flags.IF, rIF);
+	  printf("IF\n");
   }
   if (cpu.flags.OF != rOF){
-	  diff = true;
-	  printf("zmf: Not equal to QEMU @ cpu.flags.OF = %u, r.OF = %u\n", cpu.flags.OF, rOF);
+	  //diff = true;
+	  //printf("zmf: Not equal to QEMU @ cpu.flags.OF = %u, r.OF = %u\n", cpu.flags.OF, rOF);
+	  printf("OF\n");
   }
 
 
