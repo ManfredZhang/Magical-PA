@@ -2,7 +2,11 @@
 
 make_EHelper(add) {
   rtl_add(&t2, &id_dest->val, &id_src->val);
+  uint32_t arith_temp = id_src->val;
   operand_write(id_dest, &t2);
+  operand_write(id_src, &arith_temp);
+  printf("zzmf: %u\n",arith_temp);
+
 
   rtl_update_ZFSF(&t2, id_dest->width);
 
