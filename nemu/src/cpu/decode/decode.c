@@ -41,11 +41,8 @@ static inline make_DopHelper(SI) {
   //TODO();
   uint32_t a = instr_fetch(eip, op->width);
   
-  if (op -> width == 1){
+  if (op -> width == 1)
       if (a >> 7 == 1) a += 0xffffff00;
-	  printf("zzmf: %u\n", a);
-  }
-  //printf("zzmf: %u\n",op->width);
   op->simm = a;
 
   rtl_li(&op->val, op->simm);
