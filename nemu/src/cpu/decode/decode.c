@@ -40,9 +40,9 @@ static inline make_DopHelper(SI) {
    */
   //TODO();
   uint32_t a = instr_fetch(eip, op->width);
-  if (a >> 31 == 1)
+  if (a >> (op->width*8-1) == 1)
 	  a += 0xffff0000;
-  printf("zzmf: %u\n",op->width);
+  //printf("zzmf: %u\n",op->width);
   op->simm = a;
 
   rtl_li(&op->val, op->simm);
