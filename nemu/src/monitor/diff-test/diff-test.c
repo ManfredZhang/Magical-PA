@@ -151,7 +151,7 @@ void difftest_step(uint32_t eip) {
   // Set `diff` as `true` if they are not the same.
   if (cpu.eax == r.eax){
 	  diff = true;
-	  printf("hello\n");
+	  //printf("hello\n");
   }
 
   if (diff) {
