@@ -25,7 +25,7 @@ make_EHelper(xor) {
   rtl_update_ZFSF(&t2, id_dest->width);
   cpu.flags.CF = 0;
   cpu.flags.OF = 0;
-  operand_write(id_dest, &t2);
+  //operand_write(id_dest, &t2);
   print_asm_template2(xor);
 }
 
