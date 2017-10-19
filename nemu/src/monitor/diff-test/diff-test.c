@@ -149,11 +149,40 @@ void difftest_step(uint32_t eip) {
 
   // TODO: Check the registers state with QEMU.
   // Set `diff` as `true` if they are not the same.
-  if (cpu.eax == r.eax){
-	  //diff = true;
+  if (cpu.eax != r.eax){
+	  diff = true;
 	  printf("zmf: Not equal to QEMU @ cpu.eax = %u r.eax = %u\n", cpu.eax, r.eax);
-
   }
+  if (cpu.ecx != r.ecx){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.ecx = %u r.ecx = %u\n", cpu.ecx, r.ecx);
+  }
+  if (cpu.edx != r.edx){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.edx = %u r.edx = %u\n", cpu.edx, r.edx);
+  }
+  if (cpu.ebx != r.ebx){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.ebx = %u r.ebx = %u\n", cpu.ebx, r.ebx);
+  }
+  if (cpu.esp != r.esp){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.esp = %u r.esp = %u\n", cpu.esp, r.esp);
+  }
+  if (cpu.ebp != r.ebp){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.ebp = %u r.ebp = %u\n", cpu.ebp, r.ebp);
+  }
+  if (cpu.esi != r.esi){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.esi = %u r.esi = %u\n", cpu.esi, r.esi);
+  }
+  if (cpu.edi != r.edi){
+	  diff = true;
+	  printf("zmf: Not equal to QEMU @ cpu.edi = %u r.edi = %u\n", cpu.edi, r.edi);
+  }
+
+
 
   if (diff) {
     nemu_state = NEMU_END;
