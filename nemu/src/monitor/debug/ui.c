@@ -63,6 +63,12 @@ static int cmd_info(char *args)
 	{
 		printf("eax:0x%08X  ecx:0x%08X  edx:0x%08X  ebx:0x%08X\nesp:0x%08X  ebp:0x%08X  esi:0x%08X  edi:0x%08X\n",cpu.eax, cpu.ecx, cpu.edx, cpu.ebx, cpu.esp, cpu.ebp, cpu.esi, cpu.edi);
 		printf("eip:0x%08X\n", cpu.eip);
+		if(cpu.flags.CF) printf("CF ");
+		if(cpu.flags.IF) printf("IF ");
+		if(cpu.flags.ZF) printf("ZF ");
+		if(cpu.flags.SF) printf("SF ");
+		if(cpu.flags.OF) printf("OF ");
+		printf("\n"); 
 	}
 	else
 	{
