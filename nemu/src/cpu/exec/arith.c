@@ -37,7 +37,7 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-	printf("zzmf: dest:%u src:%u src2: %u\n",id_dest->val,id_src->val,id_src2->val);
+	printf("zzmf: dest:%u src:%u src2: %u\n",id_dest->imm,id_src->imm,id_src2->imm);
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   //operand_write(id_dest, &t2);
 
