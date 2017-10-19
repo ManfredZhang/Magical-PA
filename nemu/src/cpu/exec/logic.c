@@ -23,8 +23,8 @@ make_EHelper(xor) {
   //printf("zzmf: id_dest->imm = %u, t2 = %u\n", id_dest->imm, t2);
   
   rtl_update_ZFSF(&t2, id_dest->width);
-  //cpu.flags.CF = 0;
-  //cpu.flags.OF = 0;
+  cpu.flags.CF = 0;
+  cpu.flags.OF = 0;
   //operand_write(id_dest, &t2);
   print_asm_template2(xor);
 }
