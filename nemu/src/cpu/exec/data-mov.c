@@ -12,7 +12,7 @@ make_EHelper(push) {
   //bool success = true;
   //uint32_t temp_data_mov = expr(id_dest->str, &success);
   rtl_push(&(id_dest->val));
-  operand_write(id_dest, &id_src->val);
+  //operand_write(id_dest, &id_src->val);
   print_asm_template1(push);
   
 }
