@@ -6,21 +6,28 @@ make_EHelper(add) {
   operand_write(id_dest, &t2);
   //operand_write(id_src, &arith_temp);
   //printf("zzmf: %u\n",arith_temp);
-
+assert(id_src->val == arith_temp);
 
   rtl_update_ZFSF(&t2, id_dest->width);
-
+assert(id_src->val == arith_temp);
   rtl_sltu(&t0, &t2, &id_dest->val);
+assert(id_src->val == arith_temp);
   rtl_set_CF(&t0);
-
+assert(id_src->val == arith_temp);
   rtl_xor(&t0, &id_dest->val, &id_src->val);
+assert(id_src->val == arith_temp);
   rtl_not(&t0);
+assert(id_src->val == arith_temp);
   rtl_xor(&t1, &id_dest->val, &t2);
+assert(id_src->val == arith_temp);
   rtl_and(&t0, &t0, &t1);
+assert(id_src->val == arith_temp);
   rtl_msb(&t0, &t0, id_dest->width);
+assert(id_src->val == arith_temp);
   rtl_set_OF(&t0);
+assert(id_src->val == arith_temp);
 
-  operand_write(id_src, &arith_temp);
+  //operand_write(id_src, &arith_temp);
 
   print_asm_template2(add);
 }
