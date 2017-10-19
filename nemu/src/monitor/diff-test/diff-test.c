@@ -151,7 +151,8 @@ void difftest_step(uint32_t eip) {
   // Set `diff` as `true` if they are not the same.
   if (cpu.eax == r.eax){
 	  //diff = true;
-	  //printf("hello\n");
+	  printf("zmf: Not equal to QEMU @ cpu.eax = %u r.eax = %u\n", cpu.eax, r.eax);
+
   }
 
   if (diff) {
