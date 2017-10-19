@@ -10,7 +10,7 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
     CC_S, CC_NS, CC_P,  CC_NP,
     CC_L, CC_NL, CC_LE, CC_NLE
   };
-  printf("zzmf: CC_NE=%u\n", CC_NE);
+  //printf("zzmf: CC_NE=%u\n", CC_NE);
 
   // TODO: Query EFLAGS to determine whether the condition code is satisfied.
   // dest <- ( cc is satisfied ? 1 : 0)
@@ -18,11 +18,13 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
     case CC_O:
     case CC_B:
     case CC_E:
+		if (cpu.flags.ZF == 1) *dest = 1;
+		break;
     case CC_BE:
     case CC_S:
     case CC_L:
     case CC_LE:
-      TODO();
+      //TODO();
     default: panic("should not reach here");
     case CC_P: panic("n86 does not have PF");
   }
