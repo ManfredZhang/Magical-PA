@@ -20,11 +20,11 @@ make_EHelper(and) {
 make_EHelper(xor) {
   rtl_xor(&t2, &id_dest->val, &id_src->val);
   operand_write(id_dest, &t2);
-  printf("zzmf: id_dest->imm = %u, t2 = %u\n", id_dest->imm, t2);
+  //printf("zzmf: id_dest->imm = %u, t2 = %u\n", id_dest->imm, t2);
   
   rtl_update_ZFSF(&t2, id_dest->width);
-  cpu.flags.CF = 0;
-  cpu.flags.OF = 0;
+  //cpu.flags.CF = 0;
+  //cpu.flags.OF = 0;
   //operand_write(id_dest, &t2);
   print_asm_template2(xor);
 }
