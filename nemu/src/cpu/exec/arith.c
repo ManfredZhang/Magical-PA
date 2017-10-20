@@ -58,7 +58,7 @@ make_EHelper(cmp) {
 make_EHelper(inc) {
   id_dest->val++;
   operand_write(id_dest,&id_dest->val);
-  rtl_update_ZFSF(&t2, id_dest->width);
+  rtl_update_ZFSF(&id_dest->val, id_dest->width);
 
   uint32_t temp = 1;
   uint32_t atmp = id_dest->val - 1;
@@ -79,7 +79,7 @@ make_EHelper(dec) {
   //TODO();
   id_dest->val--;
   operand_write(id_dest,&id_dest->val);
-  rtl_update_ZFSF(&t2, id_dest->width);
+  rtl_update_ZFSF(&id_dest->val, id_dest->width);
 
   uint32_t atmp = 1 + id_dest->val;
   
