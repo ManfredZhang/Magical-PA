@@ -1,6 +1,13 @@
 #include "cpu/exec.h"
 #include "monitor/expr.h"
 
+//zmf: TODO?
+make_EHelper(xchg) {
+	uint32_t temp = id_src->val;
+	operand_write(id_src, &id_dest->val);
+    operand_write(id_dest, &temp);
+}
+
 make_EHelper(mov) {
   operand_write(id_dest, &id_src->val);
   print_asm_template2(mov);

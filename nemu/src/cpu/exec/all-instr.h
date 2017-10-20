@@ -26,4 +26,4 @@ make_EHelper(test);
 make_EHelper(leave);
 make_EHelper(sar);
 make_EHelper(shl);
-
+make_EHelper(xchg);
