@@ -3,6 +3,7 @@
 
 //zmf: TODO?
 make_EHelper(xchg) {
+	printf("zzmf: id_src->val = %u, id_dest->val = %u, id_src2->val = %u\n", id_src->val, id_dest->val, id_src2->val);
 	uint32_t temp = id_src->val;
 	operand_write(id_src, &id_dest->val);
     operand_write(id_dest, &temp);
