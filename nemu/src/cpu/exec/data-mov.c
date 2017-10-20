@@ -7,7 +7,6 @@ make_EHelper(xchg) {
 	operand_write(id_src, &id_dest->val);
     operand_write(id_dest, &temp);
 	print_asm_template2(xchg);
-
 }
 
 make_EHelper(mov) {
