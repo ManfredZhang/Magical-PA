@@ -28,6 +28,7 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
     case CC_LE:
 		if (cpu.flags.ZF==1||cpu.flags.SF!=cpu.flags.OF) *dest = 1;
 		else *dest = 0;
+		break;
       //TODO();
     default: panic("should not reach here");
     case CC_P: panic("n86 does not have PF");
