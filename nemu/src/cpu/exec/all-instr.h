@@ -29,3 +29,4 @@ make_EHelper(shl);
 make_EHelper(xchg);
 make_EHelper(dec);
 make_EHelper(or);
+make_EHelper(not);
