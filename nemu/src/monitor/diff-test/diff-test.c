@@ -218,6 +218,7 @@ void difftest_step(uint32_t eip) {
 
 
   if (diff) {
+	printf("zmf: Stop @ eip == %x\n", cpu.eip);
     nemu_state = NEMU_END;
   }
 }
