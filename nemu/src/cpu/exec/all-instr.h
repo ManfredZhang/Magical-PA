@@ -31,4 +31,9 @@ make_EHelper(dec);
 make_EHelper(or);
 make_EHelper(not);
 make_EHelper(adc);
-
+make_EHelper(sbb);
+make_EHelper(shr);
+make_EHelper(mul);
+make_EHelper(imul1);
+make_EHelper(div);
+make_EHelper(idiv);
