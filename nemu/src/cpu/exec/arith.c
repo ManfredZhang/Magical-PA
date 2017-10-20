@@ -63,7 +63,9 @@ make_EHelper(inc) {
 }
 
 make_EHelper(dec) {
-  TODO();
+  //TODO();
+  id_dest->val--;
+  operand_write(id_dest,&id_dest->val);
 
   print_asm_template1(dec);
 }
