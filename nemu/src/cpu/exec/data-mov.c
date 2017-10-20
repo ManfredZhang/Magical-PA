@@ -35,9 +35,9 @@ make_EHelper(popa) {
 
 make_EHelper(leave) {
   //TODO();
-  uint32_t data_temp = vaddr_read(cpu.ebp, 4);
-  vaddr_write(cpu.esp, 4, data_temp);
-
+  //uint32_t data_temp = vaddr_read(cpu.ebp, 4);
+  //vaddr_write(cpu.esp, 4, data_temp);
+  cpu.esp = cpu.ebp;
   rtl_pop(&cpu.ebp);
 
   print_asm("leave");
