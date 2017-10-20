@@ -77,7 +77,7 @@ typedef struct {
 			uint32_t edi;
 			uint16_t di;
 		};		
-
+    };
   };
 
   union {
