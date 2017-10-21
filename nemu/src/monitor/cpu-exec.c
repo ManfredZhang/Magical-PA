@@ -21,7 +21,8 @@ void cpu_exec(uint64_t n) {
   }
   nemu_state = NEMU_RUNNING;
 
-  bool print_flag = 1; // n < MAX_INSTR_TO_PRINT;
+  bool print_flag = n < MAX_INSTR_TO_PRINT;
+  //print_flag = true; //zmf: print all asm
 
   for (; n > 0; n --) {
     /* Execute one instruction, including instruction fetch,
