@@ -42,3 +42,5 @@ make_EHelper(jmp_rm);
 make_EHelper(jmp);
 make_EHelper(imul2);
 make_EHelper(cltd);
+make_EHelper(pusha);
+make_EHelper(popa);
