@@ -44,3 +44,4 @@ make_EHelper(imul2);
 make_EHelper(cltd);
 make_EHelper(pusha);
 make_EHelper(popa);
+make_EHelper(imul3);
