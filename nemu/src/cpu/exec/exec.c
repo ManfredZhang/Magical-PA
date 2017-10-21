@@ -130,7 +130,7 @@ opcode_entry opcode_table [512] = {
   /* 0xdc */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xe0 */	EMPTY, EMPTY, EMPTY, EMPTY,//loopne_v, loope_v, loop_v, jcxz_rel_b,//wa?
   /* 0xe4 */	EMPTY, EMPTY, EMPTY, EMPTY,//in_i2a_b, in_i2a_v, out_a2i_b, out_a2i_v,
-  /* 0xe8 */	IDEX(J, call), IDEXW(J, jmp, 4), EMPTY, IDEXW(J, jmp, 1),//call_rel_v, jmp_rel_v, ljmp, jmp_rel_b,
+  /* 0xe8 */	IDEX(J, call), IDEX(J, jmp), EMPTY, IDEXW(J, jmp, 1),//call_rel_v, jmp_rel_v, ljmp, jmp_rel_b,
   /* 0xec */	EMPTY, EMPTY, EMPTY, EMPTY,//in_d2a_b, in_d2a_v, out_a2d_b, out_a2d_v,
   /* 0xf0 */	EMPTY, EMPTY, EMPTY, EMPTY,//inv, inv, repnz, rep,
   /* 0xf4 */	EMPTY, EMPTY, IDEXW(E, gp3, 1), IDEX(E, gp3),//hlt, inv, group3_b, group3_v,
