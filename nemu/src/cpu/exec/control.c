@@ -29,12 +29,14 @@ make_EHelper(call) {
   // call_rel32
   // 1: 跳转
   // the target address is calculated at the decode stage 
-  decoding.jmp_eip = *eip + id_dest->val;
-  decoding.is_jmp = 1;
+  //decoding.jmp_eip = *eip + id_dest->val;
+  //decoding.is_jmp = 1;
 
   // 2：保存返回地址
-  cpu.esp -= 4;
-  vaddr_write(cpu.esp, 4, *eip);
+  //cpu.esp -= 4;
+  //vaddr_write(cpu.esp, 4, *eip);
+  decoding.is_jmp = 1;
+  rtl_push(&decoding.seq_eip);
 
   print_asm("call %x", decoding.jmp_eip);
 }
