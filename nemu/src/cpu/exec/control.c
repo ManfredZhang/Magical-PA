@@ -55,8 +55,9 @@ make_EHelper(call_rm) {
   decoding.jmp_eip = id_dest->val;
   decoding.is_jmp = 1;
 
-  cpu.esp -= 4;
-  vaddr_write(cpu.esp, 4, *eip);
+  //cpu.esp -= 4;
+  //vaddr_write(cpu.esp, 4, *eip);
+  rtl_push(&decoding.seq_eip);
 
   print_asm("call *%s", id_dest->str);
 }
