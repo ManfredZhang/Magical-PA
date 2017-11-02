@@ -5,7 +5,7 @@
 //#define DIFF_TEST //turn on differential test with qemu
 
 /* You will define this macro in PA2 */
-//#define HAS_IOE
+#define HAS_IOE
 
 #include "debug.h"
 #include "macro.h"
