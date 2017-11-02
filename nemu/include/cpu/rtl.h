@@ -113,10 +113,10 @@ static inline void rtl_sr(int r, int width, const rtlreg_t* src1) {
 
 #define make_rtl_setget_eflags(f) \
   static inline void concat(rtl_set_, f) (const rtlreg_t* src) { \
-	cpu.flags.f = *src;\
+	cpu.flags.f = (*src != 0);\
   } \
   static inline void concat(rtl_get_, f) (rtlreg_t* dest) { \
-	*dest = cpu.flags.f;\
+	*dest = (cpu.flags.f != 0);\
   }
 
 make_rtl_setget_eflags(CF)
@@ -139,7 +139,7 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
   //TODO();
   int temp = 32 - width*8;
-  *dest = ((int)(*src1 << temp)) >> temp;
+  *dest = ((int32_t)(*src1 << temp)) >> temp;
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
@@ -168,7 +168,7 @@ static inline void rtl_eq0(rtlreg_t* dest, const rtlreg_t* src1) {
 static inline void rtl_eqi(rtlreg_t* dest, const rtlreg_t* src1, int imm) {
   // dest <- (src1 == imm ? 1 : 0)
   //TODO();
-  *dest = (*src1 == imm ? 1:0);
+  *dest = ((int32_t)*src1 == imm ? 1:0);
 }
 
 static inline void rtl_neq0(rtlreg_t* dest, const rtlreg_t* src1) {
