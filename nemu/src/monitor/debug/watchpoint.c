@@ -1,5 +1,6 @@
 #include "monitor/watchpoint.h"
 #include "monitor/expr.h"
+#include "cpu/exec.h"
 
 #define NR_WP 32
 
@@ -100,7 +101,7 @@ bool every_check()
 		if (val != temp_head -> current_val)
 		{
 			flag = true;
-			printf("\nzmf stopped the nemu at watchpoint #%d: %s\n", temp_head -> NO, temp_head -> record_expr);
+			printf("\nzmf stopped the nemu at watchpoint #%d: %s\n@ eip = %x\n", temp_head -> NO, temp_head -> record_expr, cpu.eip);
 			printf("\nOld value = %d\n", temp_head -> current_val);
 			printf("New value = %d\n", val);
 			temp_head -> current_val = val;
