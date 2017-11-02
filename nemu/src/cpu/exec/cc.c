@@ -16,24 +16,24 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
   // dest <- ( cc is satisfied ? 1 : 0)
   switch (subcode & 0xe) {//1110
     case CC_O:
-      if (cpu.flags.OF == 1) *dest = 1;
+      if (cpu.flags.OF == 0x1) *dest = 1;
       else *dest = 0;
       break;
     case CC_B:
-      if (cpu.flags.CF == 1) *dest = 1;
+      if (cpu.flags.CF == 0x1) *dest = 1;
       else *dest = 0;
       break;
     case CC_E:
-		  if (cpu.flags.ZF == 1) *dest = 1;
-		  else *dest = 0;
+	  if (cpu.flags.ZF == 0x1) *dest = 1;
+	  else *dest = 0;
 		  //printf("zzmf: *dest = %u\n",*dest);
-		  break;
+	  break;
     case CC_BE:
-      if (cpu.flags.CF == 1||cpu.flags.ZF == 1) *dest = 1;
+      if ((cpu.flags.CF == 0x1)||(cpu.flags.ZF == 0x1)) *dest = 1;
       else *dest = 0;
       break;
     case CC_S:
-      if (cpu.flags.SF == 1) *dest = 1;
+      if (cpu.flags.SF == 0x1) *dest = 1;
       else *dest = 0;
       break;
     case CC_L:
@@ -41,9 +41,9 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
       else *dest = 0;
       break;
     case CC_LE:
-		  if (cpu.flags.ZF == 1||cpu.flags.SF != cpu.flags.OF) *dest = 1;
-		  else *dest = 0;
-		  break;
+	  if ((cpu.flags.ZF == 0x1) || (cpu.flags.SF != cpu.flags.OF)) *dest = 1;
+	  else *dest = 0;
+	  break;
       //TODO();
     default: panic("should not reach here");
     case CC_P: panic("n86 does not have PF");
