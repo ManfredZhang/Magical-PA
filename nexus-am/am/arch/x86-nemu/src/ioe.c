@@ -9,7 +9,7 @@ void _ioe_init() {
 }
 
 unsigned long _uptime() {
-  return 0;
+  return inl(RTC_PORT) - boot_time;;
 }
 
 uint32_t* const fb = (uint32_t *)0x40000;
@@ -25,6 +25,7 @@ void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
   int i;
   for (i = 0; i < _screen.width * _screen.height; i++) {
     fb[i] = i;
+	//TODO();
   }
 }
 
@@ -32,5 +33,6 @@ void _draw_sync() {
 }
 
 int _read_key() {
+	//TODO();
   return _KEY_NONE;
 }
