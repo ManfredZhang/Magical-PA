@@ -10,7 +10,7 @@ make_EHelper(rol) {
 
   print_asm_template2(rol);
 }
-
+//paddr_write
 make_EHelper(test) {
   //TODO();
   rtl_and(&t2, &id_dest->val, &id_src->val);
