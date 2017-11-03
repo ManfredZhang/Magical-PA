@@ -1,5 +1,16 @@
 #include "cpu/exec.h"
 
+make_EHelper(rol) {
+  t0 = id_src->val % (id_dest->width << 3);
+  t1 = (id_dest->width << 3) - t0;
+  t2  = (id_dest->val << t0) | (id_dest->val >> t1);
+  operand_write(id_dest, &t2);
+  t2 = (t2 & 0x00000001) == 1;
+  rtl_set_CF(&t2);
+
+  print_asm_template2(rol);
+}
+
 make_EHelper(test) {
   //TODO();
   rtl_and(&t2, &id_dest->val, &id_src->val);
