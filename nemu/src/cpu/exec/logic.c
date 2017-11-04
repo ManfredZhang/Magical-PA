@@ -1,13 +1,27 @@
 #include "cpu/exec.h"
 
 make_EHelper(rol) {
-  uint32_t temp = id_dest->width * 8;
+  /*uint32_t temp = id_dest->width * 8;
   t0 = id_src->val % temp;
   t1 = (id_dest->val << t0) | (id_dest->val >> (temp-t0));
   operand_write(id_dest, &t1);
   t1 = (t1 & 0x00000001) == 1;
   rtl_set_CF(&t2);
-  TODO();
+  TODO();*/
+  uint32_t temp = id_src->val % (id_dest->width * 8);
+  while (temp) {
+	  uint8_t tmpcf = id_dest->val >> (id_dest->width*8 - 1);
+	  id_dest->val = id_dest->val * 2 + tmpcf;
+	  temp--;
+  }
+  if (id_src->val % (id_dest->width * 8) == 1) {
+	  if ((id_dest->val >> (id_dest->width*8 - 1)) != cpu.flags.CF)
+		  cpu.flags.OF = 1;
+	  else
+		  cpu.flags.OF = 0;
+  }
+  t1 = (t1 & 0x00000001) == 1;
+  rtl_set_CF(&t2);
 
   print_asm_template2(rol);
 }
