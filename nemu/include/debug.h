@@ -44,4 +44,4 @@ extern FILE* log_fp;
 
 #endif
 
-volatile static int dummmy;
+//volatile static int dummmy = 0;

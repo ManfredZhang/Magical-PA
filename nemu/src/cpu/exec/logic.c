@@ -1,12 +1,13 @@
 #include "cpu/exec.h"
 
 make_EHelper(rol) {
-  t0 = id_src->val % (id_dest->width << 3);
-  t1 = (id_dest->width << 3) - t0;
-  t2  = (id_dest->val << t0) | (id_dest->val >> t1);
-  operand_write(id_dest, &t2);
-  t2 = (t2 & 0x00000001) == 1;
+  uint32_t temp = id_dest->width * 8;
+  t0 = id_src->val % temp;
+  t1 = (id_dest->val << t0) | (id_dest->val >> (temp-t0));
+  operand_write(id_dest, &t1);
+  t1 = (t1 & 0x00000001) == 1;
   rtl_set_CF(&t2);
+  TODO();
 
   print_asm_template2(rol);
 }
