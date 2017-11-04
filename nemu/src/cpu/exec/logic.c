@@ -14,6 +14,8 @@ make_EHelper(rol) {
 	  id_dest->val = id_dest->val * 2 + tmpcf;
 	  temp--;
   }
+  operand_write(id_dest, &id_dest->val);
+
   if (id_src->val % (id_dest->width * 8) == 1) {
 	  if ((id_dest->val >> (id_dest->width*8 - 1)) != cpu.flags.CF)
 		  cpu.flags.OF = 1;
