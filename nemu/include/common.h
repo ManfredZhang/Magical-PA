@@ -1,8 +1,8 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#define DEBUG
-#define DIFF_TEST //turn on differential test with qemu
+//#define DEBUG
+//#define DIFF_TEST //turn on differential test with qemu
 
 /* You will define this macro in PA2 */
 #define HAS_IOE
@@ -27,3 +27,5 @@ typedef uint16_t ioaddr_t;
 #define true 1
 
 #endif
+
+volatile static int dummy;
