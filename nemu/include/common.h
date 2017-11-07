@@ -2,7 +2,7 @@
 #define __COMMON_H__
 
 //#define DEBUG
-//#define DIFF_TEST //turn on differential test with qemu
+//#define DIFF_TEST
 
 /* You will define this macro in PA2 */
 #define HAS_IOE
