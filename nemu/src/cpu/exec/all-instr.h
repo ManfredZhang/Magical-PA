@@ -54,3 +54,6 @@ make_EHelper(cwtl);
 make_EHelper(rol);
 make_EHelper(neg);
 make_EHelper(nop);
+
+make_EHelper(int);
+make_EHelper(lidt);

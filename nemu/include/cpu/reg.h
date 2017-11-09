@@ -81,7 +81,7 @@ typedef struct {
   };
 
   union {
-		volatile uint32_t EFLAGS;
+		uint32_t EFLAGS;
 		struct {
 			volatile uint8_t CF :1;
 			volatile uint8_t undefined :5;
@@ -96,6 +96,13 @@ typedef struct {
 	};
 
   vaddr_t eip;
+
+  struct {
+	  uint16_t limit;
+	  uint32_t base;
+  } idtr;
+
+  uint16_t cs;
 
 } CPU_state;
 
