@@ -12,7 +12,8 @@ make_EHelper(lidt) {
   int temp = 4;
   if (decoding.is_operand_size_16)
 	  temp = 3;
-  rtl_lm(&(cpu.idtr.base), &id_dest->addr+6-temp, temp);
+  rtl_lm(&t0, &id_dest->addr+6-temp, temp);
+  cpu.idtr.base = t0;
 
   /*t1 = id_dest->addr + 2;
   rtl_lm(&t0, &t1, 4);
