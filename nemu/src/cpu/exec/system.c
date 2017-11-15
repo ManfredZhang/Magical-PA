@@ -6,8 +6,8 @@ extern void raise_intr(uint8_t, vaddr_t);
 
 make_EHelper(lidt) {
   //TODO();
-  t0 = cpu.idtr.limit;
   rtl_lm(&t0, &id_dest->addr, 2);
+  cpu.idtr.limit = t0;
   int temp = 4;
   if (decoding.is_operand_size_16)
 	  temp = 3;
