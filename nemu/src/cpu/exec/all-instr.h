@@ -57,3 +57,5 @@ make_EHelper(nop);
 
 make_EHelper(int);
 make_EHelper(lidt);
+
+make_EHelper(iret);
