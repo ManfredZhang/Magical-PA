@@ -9,16 +9,16 @@ make_EHelper(lidt) {
   rtl_lm(&t0, &id_dest->addr, 2);
   cpu.idtr.limit = t0;
   
-  /*int temp = 4;
+  int temp = 4;
   if (decoding.is_operand_size_16)
 	  temp = 3;
-  rtl_lm(&(cpu.idtr.base), &id_dest->addr+2, temp);*/
+  rtl_lm(&(cpu.idtr.base), &id_dest->addr+2, temp);
 
-  t1 = id_dest->addr + 2;
+  /*t1 = id_dest->addr + 2;
   rtl_lm(&t0, &t1, 4);
   if(decoding.is_operand_size_16)
 	  t0 = t0 & 0x00ffffff;
-  cpu.idtr.base = t0;
+  cpu.idtr.base = t0;*/
 
   print_asm_template1(lidt);
 }
