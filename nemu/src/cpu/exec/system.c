@@ -9,8 +9,10 @@ make_EHelper(lidt) {
   rtl_lm(&t0, &id_dest->addr, 2);
   cpu.idtr.limit = t0;
   
-  if (decoding.is_operand_size_16)
-	  rtl_lm(&(cpu.idtr.base), &id_dest->addr+3, 3);
+  if (decoding.is_operand_size_16) {
+	  rtl_lm(&(cpu.idtr.base), &id_dest->addr+2, 4);
+	  cpu.idtr.base &= 0x00ffffff;
+  }
   else
 	  rtl_lm(&(cpu.idtr.base), &id_dest->addr+2, 4);
 
