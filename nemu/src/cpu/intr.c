@@ -6,17 +6,17 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
    * That is, use ``NO'' to index the IDT.
    */
   //TODO();
-  /*rtl_push(&cpu.EFLAGS);
+  rtl_push(&cpu.EFLAGS);
   t0 = cpu.cs;
   rtl_push(&t0);
   rtl_push(&ret_addr);
 
-  uint32_t offset_high = vaddr_read(cpu.idtr.base + NO*8, 4) & 0xffff0000;
-  uint32_t offset_low = vaddr_read(cpu.idtr.base + NO*8 + 4, 4) & 0x0000ffff;
+  uint32_t offset_high = vaddr_read(cpu.idtr.base + NO*8 + 4, 4) & 0xffff0000;
+  uint32_t offset_low = vaddr_read(cpu.idtr.base + NO*8, 4) & 0x0000ffff;
 
   decoding.is_jmp = 1;
-  decoding.jmp_eip = offset_high | offset_low;*/
-	rtl_push(&cpu.EFLAGS);
+  decoding.jmp_eip = offset_high | offset_low;
+	/*rtl_push(&cpu.EFLAGS);
 		t0 = cpu.cs;
 			rtl_push(&t0);;
 				rtl_push(&ret_addr);
@@ -24,7 +24,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
 						target_eip_low = vaddr_read(cpu.idtr.base + NO * 8, 4) & 0x0000ffff;
 							target_eip_high = vaddr_read(cpu.idtr.base + NO * 8 + 4, 4) & 0xffff0000;
 							   decoding.is_jmp = 1;   
-							      decoding.jmp_eip = target_eip_low | target_eip_high;
+							      decoding.jmp_eip = target_eip_low | target_eip_high;*/
 }
 
 void dev_raise_intr() {
